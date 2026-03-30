@@ -1,0 +1,251 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Class notes for D442 Basic Nursing Skills at Western Governors University' } = Astro.props;
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>{title} | D442 Basic Nursing Skills</title>
+    <style>
+      :root {
+        --color-primary: #1a5276;
+        --color-secondary: #2e86c1;
+        --color-accent: #d4e6f1;
+        --color-text: #1c1c1c;
+        --color-bg: #f8f9fa;
+        --color-white: #ffffff;
+        --color-border: #d0dce8;
+        --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --max-width: 900px;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        color: var(--color-secondary);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* Header */
+      header {
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: 1rem 1.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      }
+
+      .header-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .site-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--color-white);
+        text-decoration: none;
+      }
+
+      .site-subtitle {
+        font-size: 0.85rem;
+        opacity: 0.85;
+      }
+
+      /* Nav */
+      nav {
+        background: var(--color-secondary);
+        padding: 0.5rem 1.5rem;
+        overflow-x: auto;
+      }
+
+      .nav-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: var(--color-white);
+        font-size: 0.9rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+
+      nav a:hover {
+        background: rgba(255,255,255,0.2);
+        text-decoration: none;
+      }
+
+      nav a.active {
+        background: rgba(255,255,255,0.3);
+        font-weight: 600;
+      }
+
+      /* Main content */
+      main {
+        max-width: var(--max-width);
+        margin: 2rem auto;
+        padding: 0 1.5rem;
+        flex: 1;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+        border-bottom: 3px solid var(--color-accent);
+        padding-bottom: 0.5rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+        color: var(--color-primary);
+        margin: 1.75rem 0 0.75rem;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        color: var(--color-secondary);
+        margin: 1.25rem 0 0.5rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      ul, ol {
+        margin: 0.5rem 0 1rem 1.5rem;
+      }
+
+      li {
+        margin-bottom: 0.35rem;
+      }
+
+      /* Note boxes */
+      .note, .warning, .tip {
+        border-left: 4px solid;
+        padding: 0.75rem 1rem;
+        margin: 1rem 0;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .note {
+        border-color: var(--color-secondary);
+        background: var(--color-accent);
+      }
+
+      .warning {
+        border-color: #c0392b;
+        background: #fdecea;
+      }
+
+      .tip {
+        border-color: #27ae60;
+        background: #eafaf1;
+      }
+
+      .note strong, .warning strong, .tip strong {
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+
+      /* Table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 0.95rem;
+      }
+
+      th {
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: 0.6rem 0.75rem;
+        text-align: left;
+      }
+
+      td {
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      tr:nth-child(even) td {
+        background: var(--color-accent);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--color-primary);
+        color: rgba(255,255,255,0.8);
+        text-align: center;
+        padding: 1.25rem;
+        font-size: 0.85rem;
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <a href={base} class="site-title">D442 – Basic Nursing Skills</a>
+        <span class="site-subtitle">Western Governors University | Class Notes</span>
+      </div>
+    </header>
+    <nav>
+      <div class="nav-inner">
+        <a href={`${base}`}>Home</a>
+        <a href={`${base}module-1`}>Module 1</a>
+        <a href={`${base}module-2`}>Module 2</a>
+        <a href={`${base}module-3`}>Module 3</a>
+        <a href={`${base}module-4`}>Module 4</a>
+        <a href={`${base}module-5`}>Module 5</a>
+        <a href={`${base}module-6`}>Module 6</a>
+        <a href={`${base}module-7`}>Module 7</a>
+        <a href={`${base}module-8`}>Module 8</a>
+      </div>
+    </nav>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>D442 Basic Nursing Skills &mdash; Western Governors University &mdash; Study Notes</p>
+    </footer>
+  </body>
+</html>
