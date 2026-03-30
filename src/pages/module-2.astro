@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Module 2 – Vital Signs">
+  <h1>Module 2: Vital Signs</h1>
+  <p>
+    Vital signs—temperature, pulse, respiration, blood pressure, and oxygen saturation—provide
+    objective data about a patient's physiological status and are a cornerstone of nursing
+    assessment.
+  </p>
+
+  <h2>Temperature</h2>
+  <h3>Normal Ranges</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Route</th>
+        <th>Normal Range</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Oral</td>
+        <td>36.5 – 37.5 °C (97.7 – 99.5 °F)</td>
+        <td>Most common; avoid 15–30 min after eating/smoking</td>
+      </tr>
+      <tr>
+        <td>Rectal</td>
+        <td>0.5 °C higher than oral</td>
+        <td>Most accurate core temp; contraindicated post rectal surgery</td>
+      </tr>
+      <tr>
+        <td>Axillary</td>
+        <td>0.5 °C lower than oral</td>
+        <td>Least accurate; used when other routes contraindicated</td>
+      </tr>
+      <tr>
+        <td>Tympanic</td>
+        <td>≈ Oral</td>
+        <td>Fast; affected by cerumen buildup</td>
+      </tr>
+      <tr>
+        <td>Temporal artery</td>
+        <td>≈ Oral</td>
+        <td>Non-invasive; preferred for pediatric patients</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul>
+    <li><strong>Fever (pyrexia):</strong> &gt; 38.0 °C (100.4 °F)</li>
+    <li><strong>Hyperthermia:</strong> &gt; 40 °C (104 °F) — medical emergency</li>
+    <li><strong>Hypothermia:</strong> &lt; 35 °C (95 °F)</li>
+  </ul>
+
+  <h2>Pulse</h2>
+  <p>
+    Pulse reflects heart rate and rhythm. Assess rate, rhythm, and quality (amplitude).
+  </p>
+  <h3>Normal Heart Rates by Age</h3>
+  <table>
+    <thead>
+      <tr><th>Age Group</th><th>Normal Range (bpm)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Newborn</td><td>100 – 160</td></tr>
+      <tr><td>Infant (1–12 mo)</td><td>80 – 140</td></tr>
+      <tr><td>Toddler (1–3 yr)</td><td>80 – 130</td></tr>
+      <tr><td>School age (6–12 yr)</td><td>70 – 110</td></tr>
+      <tr><td>Adolescent (12–18 yr)</td><td>60 – 100</td></tr>
+      <tr><td>Adult</td><td>60 – 100</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li><strong>Tachycardia:</strong> &gt; 100 bpm in adults.</li>
+    <li><strong>Bradycardia:</strong> &lt; 60 bpm in adults.</li>
+    <li><strong>Apical pulse:</strong> Auscultate at left midclavicular line, 5th intercostal space for a full minute when peripheral pulses are irregular or weak.</li>
+  </ul>
+  <div class="tip">
+    <strong>💡 Assessment Tip</strong>
+    Count peripheral pulse for 30 seconds × 2 if regular; count for a full 60 seconds if irregular.
+    Always count the apical pulse for a full 60 seconds in patients receiving cardiac medications (e.g., digoxin).
+  </div>
+
+  <h2>Respiration</h2>
+  <p>
+    Observe rate, depth, rhythm, and effort. Count respirations unobtrusively (patients may
+    alter breathing if aware).
+  </p>
+  <ul>
+    <li>Adult normal: <strong>12 – 20 breaths/min</strong></li>
+    <li><strong>Tachypnea:</strong> &gt; 20 breaths/min</li>
+    <li><strong>Bradypnea:</strong> &lt; 12 breaths/min</li>
+    <li><strong>Apnea:</strong> Absence of breathing</li>
+    <li><strong>Cheyne–Stokes:</strong> Cyclical waxing/waning depth with periods of apnea (seen in neurological injury, heart failure)</li>
+    <li><strong>Kussmaul:</strong> Deep, labored breathing (seen in metabolic acidosis / diabetic ketoacidosis)</li>
+  </ul>
+
+  <h2>Blood Pressure</h2>
+  <h3>Classification (AHA 2017 Guidelines)</h3>
+  <table>
+    <thead>
+      <tr><th>Category</th><th>Systolic (mmHg)</th><th>Diastolic (mmHg)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Normal</td><td>&lt; 120</td><td>&lt; 80</td></tr>
+      <tr><td>Elevated</td><td>120 – 129</td><td>&lt; 80</td></tr>
+      <tr><td>Hypertension Stage 1</td><td>130 – 139</td><td>80 – 89</td></tr>
+      <tr><td>Hypertension Stage 2</td><td>≥ 140</td><td>≥ 90</td></tr>
+      <tr><td>Hypertensive Crisis</td><td>&gt; 180</td><td>&gt; 120</td></tr>
+      <tr><td>Hypotension</td><td>&lt; 90</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <h3>Technique Tips</h3>
+  <ul>
+    <li>Use correct cuff size — a cuff that is too small gives a falsely high reading.</li>
+    <li>Position arm at heart level; patient should be seated and at rest for ≥ 5 minutes.</li>
+    <li>Avoid the arm with an IV, AV fistula, or on the side of a mastectomy.</li>
+    <li>Palpate the brachial artery; inflate 30 mmHg above where the pulse disappears.</li>
+    <li>Deflate at 2 mmHg/second to accurately detect Korotkoff sounds.</li>
+  </ul>
+
+  <h2>Oxygen Saturation (SpO₂)</h2>
+  <p>
+    Pulse oximetry measures peripheral oxygen saturation non-invasively using light
+    absorption.
+  </p>
+  <ul>
+    <li>Normal SpO₂: <strong>95 – 100%</strong></li>
+    <li>SpO₂ 90 – 94%: Mild hypoxemia — notify provider</li>
+    <li>SpO₂ &lt; 90%: Significant hypoxemia — urgent intervention required</li>
+    <li>Factors affecting accuracy: Poor perfusion, nail polish, motion, carbon monoxide poisoning</li>
+  </ul>
+  <div class="warning">
+    <strong>⚠️ Clinical Alert</strong>
+    Pulse oximetry does not measure ventilation (CO₂). A patient in respiratory distress
+    may have normal SpO₂ on supplemental O₂ while retaining CO₂ (hypercapnia). Pair with
+    clinical assessment and, when indicated, arterial blood gas (ABG) analysis.
+  </div>
+
+  <h2>Key Terms</h2>
+  <ul>
+    <li><strong>Pyrexia:</strong> Fever; body temperature above normal range.</li>
+    <li><strong>Pulse deficit:</strong> Difference between apical and radial pulse rates.</li>
+    <li><strong>Pulse pressure:</strong> Difference between systolic and diastolic BP (normal ~40 mmHg).</li>
+    <li><strong>Orthostatic hypotension:</strong> Drop in systolic BP ≥ 20 mmHg or diastolic BP ≥ 10 mmHg when moving from lying to standing.</li>
+    <li><strong>SpO₂:</strong> Peripheral oxygen saturation measured by pulse oximetry.</li>
+  </ul>
+</Layout>
