@@ -707,18 +707,21 @@ const clientData = JSON.stringify(
       }
 
       // ── Inject complete buttons next to h2 headings in main content ──
+      let buttonsInjected = false;
       function injectCompleteButtons() {
+        // Guard: only inject once per page load to prevent duplicate wrappers
+        if (buttonsInjected) return;
         if (!currentSlug || currentSlug === '' || currentSlug === 'course-overview') return;
         const mod = MODULES.find(m => m.slug === currentSlug);
         if (!mod) return;
+        buttonsInjected = true;
+
         const completed = getCompleted();
         const doneSections = completed[currentSlug] || [];
 
         mod.sections.forEach(sectionId => {
           const h2 = document.getElementById(sectionId);
-          if (!h2) return;
-          // Wrap h2 in a section-header div if not already done
-          if (h2.parentElement.classList.contains('section-header')) return;
+          if (!h2 || h2.closest('.section-header')) return; // skip if already wrapped
           const wrapper = document.createElement('div');
           wrapper.className = 'section-header';
           h2.parentNode.insertBefore(wrapper, h2);
