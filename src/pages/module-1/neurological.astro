@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Neurological Assessment – Health Assessment">
+  <h1>Neurological Assessment</h1>
+  <p><em>Head-to-Toe Assessment Component · Section 1: Health Assessment</em></p>
+  <p>
+    The neurological component evaluates brain and nerve function. Key assessments include
+    orientation, the Glasgow Coma Scale, and pupillary response.
+  </p>
+
+  <h2 id="orientation">Orientation</h2>
+  <p>
+    Assess orientation to four parameters (×4) by asking open-ended questions — do not
+    ask yes/no questions.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Parameter</th><th>Example Question</th><th>Significance if Impaired</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Person</strong></td><td>"What is your name?"</td><td>Severe neurological impairment; late-stage dementia</td></tr>
+      <tr><td><strong>Place</strong></td><td>"Where are you right now?"</td><td>Delirium, intoxication, advanced dementia</td></tr>
+      <tr><td><strong>Time</strong></td><td>"What is today's date / year / day of week?"</td><td>Common in delirium, dementia, metabolic encephalopathy</td></tr>
+      <tr><td><strong>Event/Situation</strong></td><td>"Why are you here?" / "What happened?"</td><td>Impaired recent memory; cognitive decline</td></tr>
+    </tbody>
+  </table>
+  <div class="tip">
+    <strong>💡 Documentation</strong>
+    Chart as "A&amp;O ×4" (alert and oriented to person, place, time, and event) when all four
+    are intact, or specify which are absent (e.g., "A&amp;O ×2 — person and place only").
+  </div>
+
+  <h2 id="gcs">Glasgow Coma Scale (GCS)</h2>
+  <p>
+    The GCS objectively quantifies LOC. It scores three domains; the sum ranges from
+    <strong>3 (deep coma)</strong> to <strong>15 (fully alert)</strong>.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Domain</th><th>Response</th><th>Score</th></tr>
+    </thead>
+    <tbody>
+      <tr><td rowspan="4"><strong>Eye Opening (E)</strong></td><td>Spontaneous</td><td>4</td></tr>
+      <tr><td>To voice</td><td>3</td></tr>
+      <tr><td>To pain</td><td>2</td></tr>
+      <tr><td>None</td><td>1</td></tr>
+      <tr><td rowspan="5"><strong>Verbal Response (V)</strong></td><td>Oriented</td><td>5</td></tr>
+      <tr><td>Confused</td><td>4</td></tr>
+      <tr><td>Inappropriate words</td><td>3</td></tr>
+      <tr><td>Incomprehensible sounds</td><td>2</td></tr>
+      <tr><td>None</td><td>1</td></tr>
+      <tr><td rowspan="6"><strong>Motor Response (M)</strong></td><td>Obeys commands</td><td>6</td></tr>
+      <tr><td>Localizes pain</td><td>5</td></tr>
+      <tr><td>Withdraws from pain</td><td>4</td></tr>
+      <tr><td>Abnormal flexion (decorticate)</td><td>3</td></tr>
+      <tr><td>Abnormal extension (decerebrate)</td><td>2</td></tr>
+      <tr><td>None</td><td>1</td></tr>
+    </tbody>
+  </table>
+  <p>
+    <strong>Clinical thresholds:</strong> GCS ≤ 8 = severe brain injury (intubation often
+    indicated); GCS 9–12 = moderate; GCS 13–15 = mild.
+  </p>
+  <div class="warning">
+    <strong>⚠️ Trending Matters</strong>
+    A single GCS value is less meaningful than a <em>trend</em>. A drop of 2 or more points
+    warrants immediate reassessment and physician notification.
+  </div>
+
+  <h2 id="perrla">PERRLA — Pupillary Assessment</h2>
+  <p>
+    <strong>P</strong>upils <strong>E</strong>qual, <strong>R</strong>ound, <strong>R</strong>eactive to
+    <strong>L</strong>ight and <strong>A</strong>ccommodation.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Normal</th><th>Abnormal / Significance</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Size</strong></td><td>2–5 mm in room light</td><td>Miosis (&lt;2 mm): opioids, pontine lesion; Mydriasis (&gt;6 mm): anticholinergics, herniation, hypoxia</td></tr>
+      <tr><td><strong>Equality</strong></td><td>Both pupils equal</td><td>Anisocoria (unequal) &gt;1 mm may indicate CN III compression, Horner syndrome, or trauma</td></tr>
+      <tr><td><strong>Shape</strong></td><td>Round</td><td>Irregular: trauma, prior surgery, Adie's pupil</td></tr>
+      <tr><td><strong>Direct light reflex</strong></td><td>Brisk constriction in illuminated eye</td><td>Sluggish or absent: optic nerve or midbrain dysfunction</td></tr>
+      <tr><td><strong>Consensual reflex</strong></td><td>Constriction in opposite eye when light shone in other eye</td><td>Absent: afferent defect (optic nerve) when direct reflex is also absent</td></tr>
+      <tr><td><strong>Accommodation</strong></td><td>Pupils constrict when focusing on near object</td><td>Absent: CN III palsy, anticholinergic drugs</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="additional">Additional Neurological Checks</h2>
+  <ul>
+    <li><strong>Cranial nerve screening:</strong> CN II (vision), CN VII (facial symmetry — smile, raise eyebrows), CN XII (tongue movement).</li>
+    <li><strong>Grip strength:</strong> Ask patient to squeeze both of your fingers simultaneously; compare sides.</li>
+    <li><strong>Sensation:</strong> Light touch and pain (if indicated) in extremities; note symmetry.</li>
+    <li><strong>Reflexes:</strong> Deep tendon reflexes (DTRs) graded 0–4+ when clinically indicated.</li>
+    <li><strong>Cognitive screening:</strong> Confusion Assessment Method (CAM) for delirium; MMSE or MoCA for dementia.</li>
+  </ul>
+
+  <div class="tip">
+    <strong>💡 Delirium vs. Dementia</strong>
+    Delirium is <em>acute, fluctuating</em>, and often reversible (infection, medication, metabolic
+    cause). Dementia is <em>chronic and progressive</em>. A patient with dementia can develop
+    superimposed delirium — treat the acute cause first.
+  </div>
+</Layout>

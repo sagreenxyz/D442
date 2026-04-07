@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Integumentary Assessment – Health Assessment">
+  <h1>Integumentary Assessment</h1>
+  <p><em>Head-to-Toe Assessment Component · Section 1: Health Assessment</em></p>
+  <p>
+    The integumentary assessment examines the skin, hair, and nails. It is critical for
+    identifying pressure injuries, wound complications, and systemic disease manifestations.
+  </p>
+
+  <h2 id="color">Skin Color</h2>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Description</th><th>Possible Cause</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Normal</strong></td><td>Consistent with patient's baseline tone; pink mucous membranes</td><td>—</td></tr>
+      <tr><td><strong>Pallor</strong></td><td>Pale/white skin; pallor of mucous membranes</td><td>Anemia, shock, vasoconstriction</td></tr>
+      <tr><td><strong>Central cyanosis</strong></td><td>Blue-gray lips, tongue, oral mucosa</td><td>Severe hypoxia (SpO₂ &lt;85%), cardiopulmonary failure</td></tr>
+      <tr><td><strong>Peripheral cyanosis</strong></td><td>Blue-gray nail beds, fingertips</td><td>Cold, vasoconstriction, peripheral arterial disease</td></tr>
+      <tr><td><strong>Jaundice (icterus)</strong></td><td>Yellow skin, sclera, mucous membranes</td><td>Liver disease, hemolysis, bile duct obstruction</td></tr>
+      <tr><td><strong>Erythema</strong></td><td>Redness (localized or diffuse)</td><td>Inflammation, infection, sunburn, cellulitis, rash</td></tr>
+      <tr><td><strong>Mottling</strong></td><td>Irregular, blotchy red-purple patches</td><td>Impaired perfusion; end-of-life changes</td></tr>
+      <tr><td><strong>Bronzing/hyperpigmentation</strong></td><td>Darkening of skin</td><td>Addison's disease, post-inflammatory changes</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="temperature">Skin Temperature</h2>
+  <p>Use the dorsum of the hand (most sensitive to temperature) to assess:</p>
+  <ul>
+    <li><strong>Warm:</strong> Normal; well-perfused. Fever may cause generalized warmth.</li>
+    <li><strong>Cool:</strong> Vasoconstriction, shock, peripheral arterial disease.</li>
+    <li><strong>Hot (localized):</strong> Inflammation, infection, DVT.</li>
+    <li><strong>Diaphoresis (clammy/cool and moist):</strong> Sympathetic activation — pain, anxiety, myocardial infarction, hypoglycemia, shock.</li>
+    <li><strong>Compare bilaterally:</strong> Unilateral warmth or coolness indicates a local problem.</li>
+  </ul>
+
+  <h2 id="moisture">Moisture</h2>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Description</th><th>Clinical Associations</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Dry</strong></td><td>Lack of moisture; possible scaling, cracking</td><td>Dehydration, hypothyroidism, aging skin</td></tr>
+      <tr><td><strong>Moist</strong></td><td>Slight moisture; normal in warm conditions</td><td>Normal to mild diaphoresis</td></tr>
+      <tr><td><strong>Diaphoretic</strong></td><td>Excessive sweating</td><td>Pain, fever, anxiety, MI, hypoglycemia, menopause</td></tr>
+      <tr><td><strong>Clammy</strong></td><td>Cool and moist simultaneously</td><td>Shock, hypoglycemia, extreme anxiety</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="turgor">Skin Turgor</h2>
+  <p>
+    Gently pinch a fold of skin on the back of the hand or forearm, lift slightly,
+    then release. Observe return time.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Return Time</th><th>Interpretation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>&lt;2 seconds</strong></td><td>Normal — good skin turgor; adequate hydration</td></tr>
+      <tr><td><strong>2–3 seconds</strong></td><td>Reduced turgor; mild dehydration</td></tr>
+      <tr><td><strong>&gt;3 seconds (tenting)</strong></td><td>Poor turgor; dehydration, malnutrition, older adult skin changes</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>📌 Note on Older Adults</strong>
+    Skin turgor is less reliable in older adults due to age-related loss of elasticity.
+    Assess mucous membrane moisture and urine output instead for hydration status.
+  </div>
+
+  <h2 id="pressure-injuries">Pressure Injury Staging (NPIAP)</h2>
+  <p>
+    The National Pressure Injury Advisory Panel (NPIAP) defines stages based on tissue
+    depth involved. Always stage at the <em>worst observed point</em>.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Stage</th><th>Description</th><th>Key Features</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Stage 1</strong></td><td>Non-blanchable erythema of intact skin</td><td>Redness that does not fade with 30 seconds of fingertip pressure; skin is intact; may be painful, firm, soft, warmer, or cooler</td></tr>
+      <tr><td><strong>Stage 2</strong></td><td>Partial-thickness loss of dermis</td><td>Shallow open ulcer with red-pink wound bed; may present as intact or open/ruptured blister; no slough</td></tr>
+      <tr><td><strong>Stage 3</strong></td><td>Full-thickness tissue loss</td><td>Subcutaneous fat may be visible; slough may be present; may have undermining/tunneling; no bone/tendon/muscle exposed</td></tr>
+      <tr><td><strong>Stage 4</strong></td><td>Full-thickness tissue loss with exposed bone, tendon, or muscle</td><td>Slough/eschar may be present; often includes undermining/tunneling; high risk for osteomyelitis</td></tr>
+      <tr><td><strong>Unstageable</strong></td><td>Full-thickness — base covered by slough or eschar</td><td>Cannot determine true depth until slough/eschar is removed; do not debride heel eschar if stable and dry</td></tr>
+      <tr><td><strong>Deep Tissue Injury (DTI)</strong></td><td>Purple or maroon intact skin or blood-filled blister</td><td>Damage from pressure/shear; may evolve rapidly into larger wound even with optimal treatment</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <strong>⚠️ Pressure Injury Prevention</strong>
+    Reposition every 2 hours; use pressure-redistribution surfaces; keep skin clean and dry;
+    address incontinence promptly; optimize nutrition (protein, vitamin C, zinc); complete
+    Braden or Waterlow scale on admission and as clinically indicated.
+  </div>
+
+  <h2 id="wounds">Wound Assessment</h2>
+  <p>When a wound is present, document using the <strong>RYB color classification</strong> or
+  <strong>TIME framework</strong>:</p>
+  <ul>
+    <li><strong>Tissue:</strong> Color (red/yellow/black), type (granulation, slough, eschar, necrosis)</li>
+    <li><strong>Infection/Inflammation:</strong> Erythema, warmth, purulent drainage, odor, fever</li>
+    <li><strong>Moisture:</strong> Dry (↑ risk of necrosis), moist (ideal), macerated (↑ moisture → satellite breakdown)</li>
+    <li><strong>Edge/Epithelium:</strong> Wound edges — attached or undermined; epithelialization present or absent</li>
+  </ul>
+</Layout>

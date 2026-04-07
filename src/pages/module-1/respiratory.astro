@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Respiratory Assessment – Health Assessment">
+  <h1>Respiratory Assessment</h1>
+  <p><em>Head-to-Toe Assessment Component · Section 1: Health Assessment</em></p>
+  <p>
+    The respiratory assessment evaluates ventilation, gas exchange, and airway patency
+    through observation, palpation, and auscultation.
+  </p>
+
+  <h2 id="rate-depth-effort">Rate, Depth &amp; Effort</h2>
+  <table>
+    <thead>
+      <tr><th>Parameter</th><th>Normal Adult</th><th>Abnormal Findings</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Rate</strong></td><td>12–20 breaths/min</td><td>Bradypnea &lt;12; tachypnea &gt;20</td></tr>
+      <tr><td><strong>Depth</strong></td><td>Regular tidal volume (~500 mL); equal bilateral chest rise</td><td>Shallow (splinting, atelectasis); deep (Kussmaul — metabolic acidosis)</td></tr>
+      <tr><td><strong>Effort</strong></td><td>Effortless, quiet</td><td>Use of accessory muscles (SCM, scalene, intercostal retractions) indicates increased WOB</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="breathing-patterns">Breathing Patterns</h2>
+  <table>
+    <thead>
+      <tr><th>Pattern</th><th>Description</th><th>Associated Condition</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Eupnea</strong></td><td>Normal rate and depth</td><td>Healthy</td></tr>
+      <tr><td><strong>Tachypnea</strong></td><td>Rate &gt;20/min; shallow</td><td>Fever, pain, anxiety, hypoxia, PE</td></tr>
+      <tr><td><strong>Bradypnea</strong></td><td>Rate &lt;12/min</td><td>Opioids, CNS depression, increased ICP</td></tr>
+      <tr><td><strong>Hyperpnea</strong></td><td>Increased depth; normal or elevated rate</td><td>Exercise, anxiety, fever</td></tr>
+      <tr><td><strong>Kussmaul</strong></td><td>Deep, labored, rapid — "air hunger"</td><td>Diabetic ketoacidosis (DKA), metabolic acidosis</td></tr>
+      <tr><td><strong>Cheyne-Stokes</strong></td><td>Crescendo-decrescendo cycles with apnea periods</td><td>Heart failure, stroke, end-of-life</td></tr>
+      <tr><td><strong>Biot's</strong></td><td>Irregular clusters with periods of apnea</td><td>Severe brain injury, meningitis</td></tr>
+      <tr><td><strong>Apnea</strong></td><td>Cessation of breathing &gt;20 seconds</td><td>Emergency — requires immediate action</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="breath-sounds">Breath Sounds</h2>
+  <p>
+    Auscultate the posterior chest systematically top to bottom, comparing left and right
+    at each level (at least 6 posterior, 2 lateral, and 4 anterior sites).
+  </p>
+
+  <h3>Normal Breath Sounds</h3>
+  <table>
+    <thead>
+      <tr><th>Type</th><th>Location</th><th>Quality</th><th>I:E Ratio</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Vesicular</strong></td><td>Most peripheral lung fields</td><td>Soft, low-pitched, breezy</td><td>Inspiration &gt; expiration (3:1)</td></tr>
+      <tr><td><strong>Bronchovesicular</strong></td><td>1st–2nd ICS anteriorly; between scapulae posteriorly</td><td>Medium pitch, medium intensity</td><td>Equal (1:1)</td></tr>
+      <tr><td><strong>Bronchial (tubular)</strong></td><td>Over trachea and sternum only</td><td>Loud, high-pitched, hollow</td><td>Expiration &gt; inspiration (2:1)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <strong>⚠️ Abnormal Placement of Bronchial Sounds</strong>
+    Bronchial sounds heard over peripheral lung fields (where vesicular sounds are expected)
+    suggest consolidation (pneumonia) or atelectasis.
+  </div>
+
+  <h3>Adventitious (Abnormal) Breath Sounds</h3>
+  <table>
+    <thead>
+      <tr><th>Sound</th><th>Timing</th><th>Quality</th><th>Mechanism / Cause</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Fine crackles</strong></td><td>Late inspiration</td><td>Soft, high-pitched; "Rice Krispies" or Velcro</td><td>Re-opening of collapsed alveoli; early heart failure, early pneumonia, fibrosis</td></tr>
+      <tr><td><strong>Coarse crackles</strong></td><td>Inspiration &amp; expiration</td><td>Loud, low-pitched, bubbly</td><td>Secretions in large airways; COPD, bronchitis, pulmonary edema</td></tr>
+      <tr><td><strong>Wheezes</strong></td><td>Expiration (or both phases)</td><td>High-pitched, musical, continuous</td><td>Bronchospasm / airway narrowing; asthma, COPD</td></tr>
+      <tr><td><strong>Rhonchi</strong></td><td>Expiration (may clear with cough)</td><td>Low-pitched, snoring or gurgling</td><td>Secretions in large airways; bronchitis, aspiration</td></tr>
+      <tr><td><strong>Stridor</strong></td><td>Predominantly inspiration</td><td>High-pitched, crowing or barking</td><td>Upper airway obstruction (croup, foreign body, anaphylaxis) — <strong>emergency</strong></td></tr>
+      <tr><td><strong>Pleural friction rub</strong></td><td>Both phases</td><td>Grating, creaking — like leather rubbing</td><td>Pleural inflammation (pleuritis, pneumonia, pulmonary embolism)</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="oxygenation">Oxygenation Indicators</h2>
+  <ul>
+    <li><strong>SpO₂:</strong> Normal 95–100%. Below 90% requires urgent intervention. Below 85% is life-threatening.</li>
+    <li><strong>Cyanosis:</strong> Central (lips, tongue) = severe hypoxia; peripheral (fingertips) may be due to cold or vasoconstriction.</li>
+    <li><strong>Clubbing:</strong> Widening of fingertip nail angle; chronic hypoxia (COPD, cystic fibrosis, congenital heart disease).</li>
+    <li><strong>Nasal flaring &amp; pursed-lip breathing:</strong> Signs of increased work of breathing.</li>
+  </ul>
+
+  <div class="tip">
+    <strong>💡 Auscultation Tips</strong>
+    Always auscultate directly on skin, not over clothing. Ask the patient to breathe deeply
+    through the mouth. At least one full breath per site. Never skip the bases — crackles from
+    early heart failure or pneumonia are heard first there.
+  </div>
+</Layout>

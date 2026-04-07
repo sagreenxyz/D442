@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Cardiovascular Assessment – Health Assessment">
+  <h1>Cardiovascular Assessment</h1>
+  <p><em>Head-to-Toe Assessment Component · Section 1: Health Assessment</em></p>
+  <p>
+    The cardiovascular assessment evaluates the heart and peripheral circulation to detect
+    arrhythmias, perfusion deficits, and fluid imbalances.
+  </p>
+
+  <h2 id="heart-rate">Heart Rate &amp; Rhythm</h2>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Normal/Definition</th><th>Clinical Significance</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Heart rate</strong></td><td>60–100 bpm (adult)</td><td>Tachycardia &gt;100; bradycardia &lt;60</td></tr>
+      <tr><td><strong>Regular rhythm</strong></td><td>Equal intervals between beats</td><td>Normal sinus rhythm</td></tr>
+      <tr><td><strong>Irregular rhythm</strong></td><td>Variable intervals</td><td>Atrial fibrillation, PVCs, heart block</td></tr>
+      <tr><td><strong>Apical pulse</strong></td><td>Auscultate at PMI (5th ICS, MCL) for 1 full minute</td><td>Most accurate HR; required before giving digoxin or antiarrhythmics</td></tr>
+    </tbody>
+  </table>
+  <div class="tip">
+    <strong>💡 Apical–Radial Pulse Deficit</strong>
+    Simultaneously assess apical and radial pulses. A deficit (apical &gt; radial) indicates
+    weak peripheral perfusion — common in atrial fibrillation.
+  </div>
+
+  <h2 id="peripheral-pulses">Peripheral Pulses</h2>
+  <p>
+    Assess bilaterally and compare. Document strength using the standard grading scale:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Grade</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>0</strong></td><td>Absent — not palpable</td></tr>
+      <tr><td><strong>1+</strong></td><td>Weak, thready — barely palpable, easily obliterated</td></tr>
+      <tr><td><strong>2+</strong></td><td>Normal — palpable with normal pressure</td></tr>
+      <tr><td><strong>3+</strong></td><td>Bounding — increased, difficult to obliterate</td></tr>
+      <tr><td><strong>4+</strong></td><td>Strongly bounding — may indicate high output state</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Common sites assessed:</strong></p>
+  <ul>
+    <li><strong>Radial</strong> (wrist) — routine HR and peripheral assessment</li>
+    <li><strong>Brachial</strong> (antecubital fossa) — blood pressure; infant assessment</li>
+    <li><strong>Carotid</strong> (neck) — assess one side at a time to avoid vagal response</li>
+    <li><strong>Femoral</strong> (inguinal area) — lower limb perfusion</li>
+    <li><strong>Popliteal</strong> (behind knee)</li>
+    <li><strong>Dorsalis pedis</strong> (dorsum of foot) — distal lower extremity perfusion</li>
+    <li><strong>Posterior tibial</strong> (behind medial malleolus)</li>
+  </ul>
+
+  <h2 id="capillary-refill">Capillary Refill</h2>
+  <p>
+    Press on the nail bed for 2 seconds until blanching, then release and count the
+    seconds until color returns.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Interpretation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>&lt; 2 seconds</strong></td><td>Normal peripheral perfusion</td></tr>
+      <tr><td><strong>2–3 seconds</strong></td><td>Borderline; monitor closely</td></tr>
+      <tr><td><strong>&gt; 3 seconds</strong></td><td>Delayed — indicates poor peripheral perfusion (dehydration, shock, peripheral arterial disease)</td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>📌 Note</strong>
+    Cold environments or hypothermia can prolong capillary refill independently of cardiac
+    output. Assess room temperature and patient warmth when interpreting findings.
+  </div>
+
+  <h2 id="edema">Edema Grading</h2>
+  <p>
+    Press firmly over the dorsum of the foot, the medial malleolus, or pretibial area
+    for 5 seconds to assess for pitting edema:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Grade</th><th>Depth of Pit</th><th>Rebound Time</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>1+</strong></td><td>≤ 2 mm</td><td>Rapid (&lt;15 s)</td><td>Barely perceptible; slight pitting</td></tr>
+      <tr><td><strong>2+</strong></td><td>3–4 mm</td><td>15–30 s</td><td>Slight pitting; no obvious distortion</td></tr>
+      <tr><td><strong>3+</strong></td><td>5–6 mm</td><td>30–60 s</td><td>Moderate pitting; extremity appears swollen</td></tr>
+      <tr><td><strong>4+</strong></td><td>≥ 7 mm</td><td>&gt; 60 s</td><td>Severe pitting; deep pit; significant distortion</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Also note edema location: bilateral ankle edema is often cardiac or venous in origin;
+    unilateral edema raises concern for DVT or lymphatic obstruction.
+  </p>
+
+  <h2 id="heart-sounds">Heart Sounds</h2>
+  <ul>
+    <li><strong>S1 ("lub"):</strong> Closure of mitral and tricuspid valves; marks beginning of systole.</li>
+    <li><strong>S2 ("dub"):</strong> Closure of aortic and pulmonic valves; marks end of systole.</li>
+    <li><strong>S3 ("ventricular gallop"):</strong> Early diastole; associated with heart failure, volume overload.</li>
+    <li><strong>S4 ("atrial gallop"):</strong> Late diastole; associated with hypertension, hypertrophic cardiomyopathy.</li>
+    <li><strong>Murmurs:</strong> Turbulent flow; note timing (systolic/diastolic), location, radiation, grade (I–VI/VI).</li>
+  </ul>
+
+  <div class="warning">
+    <strong>⚠️ Priority Findings</strong>
+    Report immediately: absent peripheral pulses, capillary refill &gt;3 s with cool/pale/cyanotic
+    extremity, new S3, or 3+/4+ pitting edema with shortness of breath.
+  </div>
+</Layout>
