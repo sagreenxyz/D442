@@ -762,8 +762,8 @@ const clientData = JSON.stringify(
             badge.classList.toggle('complete', done.length === total);
           }
           // update section check marks
-          mod.sections.forEach(sec => {
-            const sectionId = sec.id;
+          mod.sections.forEach(section => {
+            const sectionId = section.id;
             const check = document.querySelector(`[data-check="${mod.slug}::${sectionId}"]`);
             const item = check ? check.closest('.sidebar-section-item') : null;
             if (check) {
@@ -788,8 +788,8 @@ const clientData = JSON.stringify(
         const completed = getCompleted();
         const doneSections = completed[currentSlug] || [];
 
-        mod.sections.forEach(sec => {
-          const sectionId = sec.id;
+        mod.sections.forEach(section => {
+          const sectionId = section.id;
           const h2 = document.getElementById(sectionId);
           if (!h2 || h2.closest('.section-header')) return; // skip if already wrapped
           const wrapper = document.createElement('div');
