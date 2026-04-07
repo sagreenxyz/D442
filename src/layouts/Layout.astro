@@ -1,4 +1,6 @@
 ---
+import { courseModules, pageOrder } from '../data/courseStructure';
+
 export interface Props {
   title: string;
   description?: string;
@@ -8,6 +10,39 @@ const { title, description = 'Class notes for D442 Basic Nursing Skills at Weste
 
 const rawBase = import.meta.env.BASE_URL;
 const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+// Determine current slug from URL (strip base and leading slash)
+const rawPath = Astro.url.pathname;
+const strippedBase = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+const currentSlug = rawPath.replace(strippedBase, '').replace(/^\/|\/$/g, '');
+
+const currentIdx = pageOrder.indexOf(currentSlug);
+const prevSlug = currentIdx > 0 ? pageOrder[currentIdx - 1] : null;
+const nextSlug = currentIdx >= 0 && currentIdx < pageOrder.length - 1 ? pageOrder[currentIdx + 1] : null;
+
+function slugToLabel(slug: string): string {
+  if (slug === '') return 'Home';
+  if (slug === 'course-overview') return 'Course Overview';
+  const mod = courseModules.find(m => m.slug === slug);
+  return mod ? `§${mod.number} ${mod.title}` : slug;
+}
+
+// Build breadcrumb trail for the current page
+interface Crumb { label: string; href: string | null; }
+const breadcrumbs: Crumb[] = [{ label: 'Home', href: base }];
+if (currentSlug === 'course-overview') {
+  breadcrumbs.push({ label: 'Course Overview', href: null });
+} else {
+  const mod = courseModules.find(m => m.slug === currentSlug);
+  if (mod) {
+    breadcrumbs.push({ label: `§${mod.number} ${mod.title}`, href: null });
+  }
+}
+
+// Serialise course structure for client-side JS
+const clientData = JSON.stringify(
+  courseModules.map(m => ({ slug: m.slug, sections: m.sections.map(s => s.id) }))
+);
 ---
 
 <!doctype html>
@@ -23,111 +58,249 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
         --color-primary: #1a5276;
         --color-secondary: #2e86c1;
         --color-accent: #d4e6f1;
+        --color-accent-dark: #a9cce3;
         --color-text: #1c1c1c;
-        --color-bg: #f8f9fa;
+        --color-bg: #f0f4f8;
         --color-white: #ffffff;
-        --color-border: #d0dce8;
+        --color-border: #c8d8e8;
+        --color-success: #1e8449;
+        --color-success-bg: #d5f5e3;
+        --sidebar-width: 290px;
+        --header-height: 56px;
         --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        --max-width: 900px;
       }
 
-      *, *::before, *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
       body {
         font-family: var(--font-sans);
         background: var(--color-bg);
         color: var(--color-text);
         line-height: 1.7;
-        min-height: 100vh;
+        height: 100vh;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
       }
 
-      a {
-        color: var(--color-secondary);
-        text-decoration: none;
-      }
+      a { color: var(--color-secondary); text-decoration: none; }
+      a:hover { text-decoration: underline; }
 
-      a:hover {
-        text-decoration: underline;
-      }
-
-      /* Header */
-      header {
+      /* ── Header ── */
+      .site-header {
         background: var(--color-primary);
         color: var(--color-white);
-        padding: 1rem 1.5rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-      }
-
-      .header-inner {
-        max-width: var(--max-width);
-        margin: 0 auto;
+        height: var(--header-height);
         display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
+        align-items: center;
+        padding: 0 1rem;
+        gap: 0.75rem;
+        flex-shrink: 0;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 100;
       }
 
+      .menu-toggle {
+        background: none;
+        border: none;
+        color: var(--color-white);
+        cursor: pointer;
+        padding: 0.4rem;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .menu-toggle:hover { background: rgba(255,255,255,0.15); }
+      .menu-toggle svg { display: block; }
+
+      .header-titles { flex: 1; min-width: 0; }
       .site-title {
-        font-size: 1.4rem;
+        font-size: 1.15rem;
         font-weight: 700;
         color: var(--color-white);
         text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
       }
+      .site-subtitle { font-size: 0.75rem; opacity: 0.8; }
 
-      .site-subtitle {
-        font-size: 0.85rem;
-        opacity: 0.85;
-      }
-
-      /* Nav */
-      nav {
-        background: var(--color-secondary);
-        padding: 0.5rem 1.5rem;
-        overflow-x: auto;
-      }
-
-      .nav-inner {
-        max-width: var(--max-width);
-        margin: 0 auto;
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-
-      nav a {
-        color: var(--color-white);
-        font-size: 0.9rem;
-        padding: 0.25rem 0.5rem;
+      .header-home-link {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.85);
+        border: 1px solid rgba(255,255,255,0.4);
+        padding: 0.25rem 0.6rem;
         border-radius: 4px;
         white-space: nowrap;
+        flex-shrink: 0;
       }
+      .header-home-link:hover { background: rgba(255,255,255,0.15); text-decoration: none; }
 
-      nav a:hover {
-        background: rgba(255,255,255,0.2);
-        text-decoration: none;
-      }
-
-      nav a.active {
-        background: rgba(255,255,255,0.3);
-        font-weight: 600;
-      }
-
-      /* Main content */
-      main {
-        max-width: var(--max-width);
-        margin: 2rem auto;
-        padding: 0 1.5rem;
+      /* ── App shell ── */
+      .app-shell {
         flex: 1;
-        width: 100%;
+        display: flex;
+        overflow: hidden;
       }
 
+      /* ── Sidebar ── */
+      .sidebar {
+        width: var(--sidebar-width);
+        min-width: var(--sidebar-width);
+        background: var(--color-white);
+        border-right: 1px solid var(--color-border);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        transition: width 0.25s ease, min-width 0.25s ease;
+        flex-shrink: 0;
+      }
+      .sidebar.collapsed { width: 0; min-width: 0; }
+
+      .sidebar-inner {
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex: 1;
+        padding: 0.75rem 0;
+      }
+
+      .sidebar-heading {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #888;
+        padding: 0.5rem 1rem 0.25rem;
+        margin-top: 0.5rem;
+      }
+
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.45rem 1rem;
+        font-size: 0.875rem;
+        color: var(--color-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-left: 3px solid transparent;
+      }
+      .sidebar-link:hover { background: var(--color-accent); text-decoration: none; color: var(--color-primary); }
+      .sidebar-link.active { border-left-color: var(--color-secondary); background: var(--color-accent); font-weight: 600; color: var(--color-primary); }
+
+      /* Module group */
+      .sidebar-module { }
+
+      .sidebar-module-toggle {
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.45rem 0.75rem 0.45rem 1rem;
+        font-size: 0.875rem;
+        font-family: var(--font-sans);
+        color: var(--color-text);
+        text-align: left;
+        border-left: 3px solid transparent;
+      }
+      .sidebar-module-toggle:hover { background: var(--color-accent); color: var(--color-primary); }
+      .sidebar-module-toggle.active { border-left-color: var(--color-secondary); background: var(--color-accent); font-weight: 600; color: var(--color-primary); }
+
+      .module-toggle-arrow {
+        flex-shrink: 0;
+        transition: transform 0.2s;
+        color: #888;
+      }
+      .sidebar-module-toggle[aria-expanded="true"] .module-toggle-arrow { transform: rotate(90deg); }
+
+      .module-toggle-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+      .module-progress-badge {
+        font-size: 0.7rem;
+        background: var(--color-accent);
+        color: var(--color-primary);
+        border-radius: 10px;
+        padding: 0.1rem 0.45rem;
+        font-weight: 700;
+        flex-shrink: 0;
+        border: 1px solid var(--color-accent-dark);
+        white-space: nowrap;
+      }
+      .module-progress-badge.complete { background: var(--color-success-bg); color: var(--color-success); border-color: #a9dfbf; }
+
+      /* Section sub-items */
+      .sidebar-sections {
+        list-style: none;
+        display: none;
+        background: #f7fafd;
+        border-left: 3px solid var(--color-accent-dark);
+        margin-left: 1rem;
+      }
+      .sidebar-sections.open { display: block; }
+
+      .sidebar-section-item {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.3rem 0.75rem 0.3rem 0.6rem;
+        font-size: 0.815rem;
+        color: #444;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sidebar-section-item a {
+        color: inherit;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+      }
+      .sidebar-section-item a:hover { color: var(--color-primary); text-decoration: none; }
+      .sidebar-section-item.done { color: var(--color-success); }
+      .sidebar-section-item.done a { color: var(--color-success); }
+      .section-check { font-size: 0.8rem; flex-shrink: 0; }
+
+      /* Reset progress button */
+      .sidebar-reset {
+        margin: 0.75rem 1rem;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+        font-family: var(--font-sans);
+        cursor: pointer;
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        background: white;
+        color: #666;
+      }
+      .sidebar-reset:hover { background: #fdecea; border-color: #c0392b; color: #c0392b; }
+
+      /* ── Main scrollable area ── */
+      .main-scroll {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+        max-width: 860px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 2rem 1.75rem;
+      }
+
+      /* ── Content typography ── */
       h1 {
-        font-size: 2rem;
+        font-size: 1.9rem;
         color: var(--color-primary);
         margin-bottom: 0.5rem;
         border-bottom: 3px solid var(--color-accent);
@@ -135,121 +308,488 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
       }
 
       h2 {
-        font-size: 1.4rem;
+        font-size: 1.35rem;
         color: var(--color-primary);
-        margin: 1.75rem 0 0.75rem;
+        margin: 2rem 0 0.75rem;
+        padding-top: 0.25rem;
       }
 
       h3 {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         color: var(--color-secondary);
         margin: 1.25rem 0 0.5rem;
       }
 
-      p {
-        margin-bottom: 1rem;
-      }
+      p { margin-bottom: 1rem; }
+      ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+      li { margin-bottom: 0.35rem; }
 
-      ul, ol {
-        margin: 0.5rem 0 1rem 1.5rem;
-      }
-
-      li {
-        margin-bottom: 0.35rem;
-      }
-
-      /* Note boxes */
       .note, .warning, .tip {
         border-left: 4px solid;
         padding: 0.75rem 1rem;
         margin: 1rem 0;
         border-radius: 0 4px 4px 0;
       }
+      .note { border-color: var(--color-secondary); background: var(--color-accent); }
+      .warning { border-color: #c0392b; background: #fdecea; }
+      .tip { border-color: #27ae60; background: #eafaf1; }
+      .note strong, .warning strong, .tip strong { display: block; margin-bottom: 0.25rem; }
 
-      .note {
-        border-color: var(--color-secondary);
-        background: var(--color-accent);
+      table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; }
+      th { background: var(--color-primary); color: var(--color-white); padding: 0.6rem 0.75rem; text-align: left; }
+      td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--color-border); }
+      tr:nth-child(even) td { background: var(--color-accent); }
+
+      code { background: #eef2f7; border-radius: 3px; padding: 0.1em 0.35em; font-size: 0.9em; }
+
+      /* ── Section completion header wrapper ── */
+      .section-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin: 2rem 0 0.75rem;
       }
+      .section-header h2 { margin: 0; flex: 1; }
 
-      .warning {
-        border-color: #c0392b;
-        background: #fdecea;
+      .complete-btn {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.78rem;
+        font-family: var(--font-sans);
+        padding: 0.3rem 0.65rem;
+        border-radius: 20px;
+        cursor: pointer;
+        border: 1.5px solid var(--color-border);
+        background: white;
+        color: #555;
+        transition: all 0.15s;
+        white-space: nowrap;
+        margin-top: 0.35rem;
       }
+      .complete-btn:hover { border-color: var(--color-success); color: var(--color-success); }
+      .complete-btn.done { background: var(--color-success-bg); border-color: #a9dfbf; color: var(--color-success); font-weight: 600; }
 
-      .tip {
-        border-color: #27ae60;
-        background: #eafaf1;
+      /* ── Notes area ── */
+      .notes-area {
+        margin-top: 2.5rem;
+        padding: 1.25rem;
+        background: #fffdf0;
+        border: 1px solid #f0e68c;
+        border-radius: 8px;
       }
-
-      .note strong, .warning strong, .tip strong {
-        display: block;
-        margin-bottom: 0.25rem;
+      .notes-area h2 {
+        font-size: 1rem;
+        color: #7d6608;
+        margin: 0 0 0.6rem;
+        border: none;
+        padding: 0;
       }
-
-      /* Table */
-      table {
+      .notes-area textarea {
         width: 100%;
-        border-collapse: collapse;
-        margin: 1rem 0;
-        font-size: 0.95rem;
-      }
-
-      th {
-        background: var(--color-primary);
-        color: var(--color-white);
+        min-height: 120px;
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        line-height: 1.6;
         padding: 0.6rem 0.75rem;
-        text-align: left;
+        border: 1px solid #e0d96a;
+        border-radius: 5px;
+        resize: vertical;
+        background: #fffef5;
+        color: var(--color-text);
       }
+      .notes-area textarea:focus { outline: 2px solid #c9b800; border-color: #c9b800; }
+      .notes-save-hint { font-size: 0.75rem; color: #999; margin-top: 0.3rem; }
 
-      td {
-        padding: 0.5rem 0.75rem;
+      /* ── Prev/Next page nav ── */
+      .page-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--color-border);
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .page-nav a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.55rem 1.1rem;
+        border: 1.5px solid var(--color-secondary);
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--color-secondary);
+        background: white;
+        transition: all 0.15s;
+      }
+      .page-nav a:hover { background: var(--color-secondary); color: white; text-decoration: none; }
+      .page-nav .spacer { flex: 1; }
+
+      /* ── Breadcrumb ── */
+      .breadcrumb-bar {
+        background: var(--color-white);
         border-bottom: 1px solid var(--color-border);
+        padding: 0.45rem 1.75rem;
+        flex-shrink: 0;
       }
-
-      tr:nth-child(even) td {
-        background: var(--color-accent);
+      .breadcrumb {
+        max-width: 860px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        flex-wrap: wrap;
+        font-size: 0.8rem;
+        color: #666;
+        list-style: none;
       }
+      .breadcrumb li { display: flex; align-items: center; gap: 0.35rem; }
+      .breadcrumb li + li::before {
+        content: '›';
+        color: #bbb;
+        font-size: 1rem;
+        line-height: 1;
+      }
+      .breadcrumb a { color: var(--color-secondary); }
+      .breadcrumb a:hover { text-decoration: underline; }
+      .breadcrumb [aria-current="page"] { color: var(--color-text); font-weight: 600; }
 
-      /* Footer */
+      /* ── Footer ── */
       footer {
         background: var(--color-primary);
-        color: rgba(255,255,255,0.8);
+        color: rgba(255,255,255,0.75);
         text-align: center;
-        padding: 1.25rem;
-        font-size: 0.85rem;
-        margin-top: auto;
+        padding: 0.9rem 1rem;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      /* ── Mobile overlay ── */
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 50;
+      }
+      @media (max-width: 768px) {
+        .sidebar {
+          position: fixed;
+          top: var(--header-height);
+          left: 0;
+          height: calc(100vh - var(--header-height));
+          z-index: 60;
+          width: min(var(--sidebar-width), 85vw);
+          min-width: 0;
+          transform: translateX(-100%);
+          transition: transform 0.25s ease;
+          box-shadow: 4px 0 16px rgba(0,0,0,0.15);
+        }
+        .sidebar.open {
+          transform: translateX(0);
+        }
+        .sidebar-overlay.visible { display: block; }
+        main { padding: 1.25rem 1rem; }
       }
     </style>
   </head>
-  <body>
-    <header>
-      <div class="header-inner">
+  <body data-current-slug={currentSlug}>
+    <!-- Mobile overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <header class="site-header">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="header-titles">
         <a href={base} class="site-title">D442 – Basic Nursing Skills</a>
-        <span class="site-subtitle">Western Governors University | Class Notes</span>
+        <span class="site-subtitle">Western Governors University · Class Notes</span>
       </div>
+      <a href={base} class="header-home-link">🏠 Home</a>
     </header>
-    <nav>
-      <div class="nav-inner">
-        <a href={`${base}`}>Home</a>
-        <a href={`${base}course-overview`}>Overview</a>
-        <a href={`${base}module-1`}>§1 Health Assessment</a>
-        <a href={`${base}module-2`}>§2 Nursing Process</a>
-        <a href={`${base}module-3`}>§3 Infection Control</a>
-        <a href={`${base}module-4`}>§4 Hygiene</a>
-        <a href={`${base}module-5`}>§5 Mobility</a>
-        <a href={`${base}module-6`}>§6 Nutrition</a>
-        <a href={`${base}module-7`}>§7 Oxygenation</a>
-        <a href={`${base}module-8`}>§8 Medications</a>
-        <a href={`${base}module-9`}>§9 Elimination</a>
-        <a href={`${base}module-10`}>§10 Specimens</a>
-        <a href={`${base}module-11`}>§11 Simulation</a>
+
+    <div class="app-shell">
+      <!-- ── Sidebar ── -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-inner" id="sidebarInner">
+          <p class="sidebar-heading">Navigation</p>
+          <a href={base} class={`sidebar-link${currentSlug === '' ? ' active' : ''}`}>🏠 Home</a>
+          <a href={`${base}course-overview`} class={`sidebar-link${currentSlug === 'course-overview' ? ' active' : ''}`}>📋 Course Overview</a>
+
+          <p class="sidebar-heading">Sections</p>
+
+          {courseModules.map((mod) => (
+            <div class="sidebar-module" data-module-slug={mod.slug} data-section-count={mod.sections.length}>
+              <button
+                class={`sidebar-module-toggle${currentSlug === mod.slug ? ' active' : ''}`}
+                aria-expanded={currentSlug === mod.slug ? 'true' : 'false'}
+                data-module-slug={mod.slug}
+              >
+                <svg class="module-toggle-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                  <path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="module-toggle-label">§{mod.number} {mod.title}</span>
+                <span class="module-progress-badge" data-progress-badge={mod.slug}>0/{mod.sections.length}</span>
+              </button>
+              <ul class={`sidebar-sections${currentSlug === mod.slug ? ' open' : ''}`} data-sections-list={mod.slug}>
+                {mod.sections.map((sec) => (
+                  <li class="sidebar-section-item" data-section-id={sec.id} data-module={mod.slug}>
+                    <span class="section-check" data-check={`${mod.slug}::${sec.id}`}>○</span>
+                    <a href={`${base}${mod.slug}#${sec.id}`}>{sec.title}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <p class="sidebar-heading">Tools</p>
+          <button class="sidebar-reset" id="resetProgress">↺ Reset all progress</button>
+        </div>
+      </aside>
+
+      <!-- ── Main scrollable content ── -->
+      <div class="main-scroll" id="mainScroll">
+      <!-- ── Breadcrumb ── -->
+      {breadcrumbs.length > 1 && (
+        <div class="breadcrumb-bar">
+          <ol class="breadcrumb" aria-label="Breadcrumb">
+            {breadcrumbs.map((crumb, i) => (
+              <li>
+                {crumb.href && i < breadcrumbs.length - 1
+                  ? <a href={crumb.href}>{crumb.label}</a>
+                  : <span aria-current="page">{crumb.label}</span>}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      <!-- ── Main content ── -->
+      <main id="mainContent">
+          <slot />
+
+          <!-- Notes area (shown on module pages and course-overview) -->
+          {currentSlug !== '' && (
+            <div class="notes-area" id="notesArea">
+              <h2>📝 My Notes</h2>
+              <textarea
+                id="notesTextarea"
+                placeholder="Add your personal notes here… they're saved automatically."
+                data-notes-key={currentSlug}
+              ></textarea>
+              <p class="notes-save-hint" id="notesSaveHint">Notes auto-saved to your browser.</p>
+            </div>
+          )}
+        </main>
+
+        <!-- Prev / Next navigation -->
+        {(prevSlug !== null || nextSlug !== null) && (
+          <div style="max-width:860px; width:100%; margin:0 auto; padding:0 1.75rem 2rem;">
+            <nav class="page-nav" aria-label="Page navigation">
+              {prevSlug !== null
+                ? <a href={`${base}${prevSlug}`}>← {slugToLabel(prevSlug)}</a>
+                : <span />}
+              <span class="spacer" />
+              {nextSlug !== null
+                ? <a href={`${base}${nextSlug}`}>{slugToLabel(nextSlug)} →</a>
+                : <span />}
+            </nav>
+          </div>
+        )}
+
+        <footer>
+          <p>D442 Basic Nursing Skills &mdash; Western Governors University &mdash; Study Notes</p>
+        </footer>
       </div>
-    </nav>
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <p>D442 Basic Nursing Skills &mdash; Western Governors University &mdash; Study Notes</p>
-    </footer>
+    </div>
+
+    <script define:vars={{ clientData, currentSlug }}>
+      // ── Course structure data ──
+      const MODULES = JSON.parse(clientData);
+      const LS_COMPLETED = 'd442_completed';
+      const LS_NOTES = 'd442_notes';
+
+      // ── localStorage helpers ──
+      function getCompleted() {
+        try { return JSON.parse(localStorage.getItem(LS_COMPLETED) || '{}'); } catch { return {}; }
+      }
+      function saveCompleted(data) {
+        localStorage.setItem(LS_COMPLETED, JSON.stringify(data));
+      }
+      function getNotes() {
+        try { return JSON.parse(localStorage.getItem(LS_NOTES) || '{}'); } catch { return {}; }
+      }
+      function saveNotes(data) {
+        localStorage.setItem(LS_NOTES, JSON.stringify(data));
+      }
+
+      // ── Sidebar toggle ──
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      const menuBtn = document.getElementById('menuToggle');
+      const isMobile = () => window.innerWidth <= 768;
+
+      function openSidebar() {
+        if (isMobile()) {
+          sidebar.classList.add('open');
+          overlay.classList.add('visible');
+        } else {
+          sidebar.classList.remove('collapsed');
+        }
+        menuBtn.setAttribute('aria-expanded', 'true');
+      }
+      function closeSidebar() {
+        if (isMobile()) {
+          sidebar.classList.remove('open');
+          overlay.classList.remove('visible');
+        } else {
+          sidebar.classList.add('collapsed');
+        }
+        menuBtn.setAttribute('aria-expanded', 'false');
+      }
+      function toggleSidebar() {
+        if (isMobile()) {
+          sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+        } else {
+          sidebar.classList.contains('collapsed') ? openSidebar() : closeSidebar();
+        }
+      }
+
+      menuBtn.addEventListener('click', toggleSidebar);
+      overlay.addEventListener('click', closeSidebar);
+
+      // ── Module accordion ──
+      document.querySelectorAll('.sidebar-module-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const slug = btn.dataset.moduleSlug;
+          const list = document.querySelector(`[data-sections-list="${slug}"]`);
+          const isOpen = list.classList.contains('open');
+          // close all
+          document.querySelectorAll('.sidebar-sections').forEach(l => l.classList.remove('open'));
+          document.querySelectorAll('.sidebar-module-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
+          if (!isOpen) {
+            list.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      // ── Update sidebar progress from localStorage ──
+      function updateSidebar() {
+        const completed = getCompleted();
+        MODULES.forEach(mod => {
+          const done = (completed[mod.slug] || []);
+          const total = mod.sections.length;
+          const badge = document.querySelector(`[data-progress-badge="${mod.slug}"]`);
+          if (badge) {
+            badge.textContent = `${done.length}/${total}`;
+            badge.classList.toggle('complete', done.length === total);
+          }
+          // update section check marks
+          mod.sections.forEach(sectionId => {
+            const check = document.querySelector(`[data-check="${mod.slug}::${sectionId}"]`);
+            const item = check ? check.closest('.sidebar-section-item') : null;
+            if (check) {
+              const isDone = done.includes(sectionId);
+              check.textContent = isDone ? '✓' : '○';
+              if (item) item.classList.toggle('done', isDone);
+            }
+          });
+        });
+      }
+
+      // ── Inject complete buttons next to h2 headings in main content ──
+      function injectCompleteButtons() {
+        if (!currentSlug || currentSlug === '' || currentSlug === 'course-overview') return;
+        const mod = MODULES.find(m => m.slug === currentSlug);
+        if (!mod) return;
+        const completed = getCompleted();
+        const doneSections = completed[currentSlug] || [];
+
+        mod.sections.forEach(sectionId => {
+          const h2 = document.getElementById(sectionId);
+          if (!h2) return;
+          // Wrap h2 in a section-header div if not already done
+          if (h2.parentElement.classList.contains('section-header')) return;
+          const wrapper = document.createElement('div');
+          wrapper.className = 'section-header';
+          h2.parentNode.insertBefore(wrapper, h2);
+          wrapper.appendChild(h2);
+
+          const btn = document.createElement('button');
+          btn.className = 'complete-btn' + (doneSections.includes(sectionId) ? ' done' : '');
+          btn.dataset.sectionId = sectionId;
+          btn.innerHTML = doneSections.includes(sectionId)
+            ? '<span>✓</span> Done'
+            : '<span>○</span> Mark done';
+          btn.title = 'Toggle section completion';
+          btn.addEventListener('click', () => toggleSection(sectionId, btn));
+          wrapper.appendChild(btn);
+        });
+      }
+
+      function toggleSection(sectionId, btn) {
+        const completed = getCompleted();
+        if (!completed[currentSlug]) completed[currentSlug] = [];
+        const idx = completed[currentSlug].indexOf(sectionId);
+        if (idx === -1) {
+          completed[currentSlug].push(sectionId);
+          btn.classList.add('done');
+          btn.innerHTML = '<span>✓</span> Done';
+        } else {
+          completed[currentSlug].splice(idx, 1);
+          btn.classList.remove('done');
+          btn.innerHTML = '<span>○</span> Mark done';
+        }
+        saveCompleted(completed);
+        updateSidebar();
+      }
+
+      // ── Notes auto-save ──
+      function initNotes() {
+        const ta = document.getElementById('notesTextarea');
+        if (!ta) return;
+        const key = ta.dataset.notesKey;
+        const notes = getNotes();
+        ta.value = notes[key] || '';
+        let saveTimer;
+        const hint = document.getElementById('notesSaveHint');
+        ta.addEventListener('input', () => {
+          clearTimeout(saveTimer);
+          hint.textContent = 'Saving…';
+          saveTimer = setTimeout(() => {
+            const data = getNotes();
+            data[key] = ta.value;
+            saveNotes(data);
+            hint.textContent = 'Notes saved ✓';
+            setTimeout(() => { hint.textContent = 'Notes auto-saved to your browser.'; }, 1500);
+          }, 600);
+        });
+      }
+
+      // ── Reset progress ──
+      document.getElementById('resetProgress').addEventListener('click', () => {
+        if (confirm('Reset all progress and notes? This cannot be undone.')) {
+          localStorage.removeItem(LS_COMPLETED);
+          localStorage.removeItem(LS_NOTES);
+          location.reload();
+        }
+      });
+
+      // ── Init ──
+      document.addEventListener('DOMContentLoaded', () => {
+        updateSidebar();
+        injectCompleteButtons();
+        initNotes();
+      });
+    </script>
   </body>
 </html>
