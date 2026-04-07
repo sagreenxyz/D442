@@ -183,6 +183,7 @@ export const courseModules: CourseModule[] = [
 export const pageOrder: string[] = [
   '',
   'course-overview',
+  'lessons',
   ...courseModules.flatMap((m) => [
     m.slug,
     ...m.sections.flatMap((s) =>

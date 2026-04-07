@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { lessonSections } from '../../data/lessonsStructure';
+
+export async function getStaticPaths() {
+  return lessonSections.map((sec) => ({
+    params: { sectionId: sec.id },
+    props: { section: sec },
+  }));
+}
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+const { section } = Astro.props;
+
+const totalLessons = section.chapters.reduce(
+  (sum: number, ch: { lessons: unknown[] }) => sum + ch.lessons.length,
+  0
+);
+---
+
+<Layout title={`Lessons – Section ${section.number}: ${section.title}`}>
+  <h1>Section {section.number}: {section.title}</h1>
+  <p>
+    <a href={`${base}lessons`}>← Back to all lessons</a>
+  </p>
+  <p>
+    {section.chapters.length} chapter{section.chapters.length !== 1 ? 's' : ''} &middot;
+    {totalLessons} lesson{totalLessons !== 1 ? 's' : ''}
+  </p>
+
+  {section.chapters.map((ch: { id: string; number: number; title: string; lessons: { id: string; title: string; estimatedTime: string }[] }) => (
+    <div class="chapter-block" id={ch.id}>
+      <h2>Chapter {ch.number}: {ch.title}</h2>
+      <ul class="lesson-list">
+        {ch.lessons.map((lesson) => (
+          <li>
+            <a href={`${base}lessons/${section.id}/${lesson.id}`} class="lesson-link">
+              <span class="lesson-title">{lesson.title}</span>
+              <span class="lesson-time">⏱ {lesson.estimatedTime}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</Layout>
+
+<style>
+  .chapter-block {
+    margin: 2rem 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-secondary);
+    border-radius: 6px;
+  }
+
+  .lesson-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+  }
+
+  .lesson-list li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .lesson-list li:last-child {
+    border-bottom: none;
+  }
+
+  .lesson-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0.25rem;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background 0.1s;
+    border-radius: 4px;
+  }
+  .lesson-link:hover {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    text-decoration: none;
+    padding-left: 0.5rem;
+  }
+
+  .lesson-title {
+    font-size: 0.9rem;
+    flex: 1;
+  }
+
+  .lesson-time {
+    font-size: 0.78rem;
+    color: #888;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+</style>
