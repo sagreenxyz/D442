@@ -7,43 +7,69 @@ const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
 const modules = [
   {
     number: 1,
-    title: 'Introduction to Nursing & Safety',
-    topics: ['Nursing roles and scope of practice', 'Patient safety & error prevention', 'Infection control & hand hygiene', 'Standard and transmission-based precautions'],
+    title: 'Health Assessment',
+    competency: '7093.4.1',
+    topics: ['Health history & general physical', 'Older adult assessment', 'Vital signs & pain assessment', 'Head-to-toe examination'],
   },
   {
     number: 2,
-    title: 'Vital Signs',
-    topics: ['Temperature measurement', 'Pulse and respiration', 'Blood pressure', 'Oxygen saturation (SpO₂)'],
+    title: 'Nursing Process & Clinical Judgment',
+    competency: '7093.4.2',
+    topics: ['Steps of the nursing process (ADPIE)', 'Clinical judgment measurement model', 'Developing a plan of care', 'Culture, diversity & health equity'],
   },
   {
     number: 3,
-    title: 'Patient Assessment',
-    topics: ['Head-to-toe assessment', 'Neurological checks', 'Pain assessment scales', 'Documentation'],
+    title: 'Infection Control',
+    competency: '7093.4.3',
+    topics: ['Hand hygiene', 'Personal protective equipment', 'Sterile vs. non-sterile gloving', 'Establishing and maintaining a sterile field'],
   },
   {
     number: 4,
-    title: 'Hygiene & Comfort',
-    topics: ['Bathing and personal hygiene', 'Oral care', 'Pressure injury prevention', 'Positioning & comfort'],
+    title: 'Personal Hygiene',
+    competency: '7093.4.4',
+    topics: ['Bed baths and personal care', 'Oral hygiene', 'Skin assessment during hygiene', 'Hair, nail, and foot care'],
   },
   {
     number: 5,
-    title: 'Mobility & Transfer',
-    topics: ['Body mechanics', 'Ambulation assistance', 'Transfer techniques', 'Range-of-motion exercises'],
+    title: 'Mobility',
+    competency: '7093.4.5',
+    topics: ['Mobility impairment assessment', 'Transfer techniques', 'Fall prevention', 'Range-of-motion exercises'],
   },
   {
     number: 6,
-    title: 'Wound Care',
-    topics: ['Wound assessment', 'Dressing changes', 'Sterile technique', 'Wound drainage management'],
+    title: 'Nutrition & Tubes',
+    competency: '7093.4.6',
+    topics: ['Nutritional needs and TPN', 'Enteral tube feedings', 'Nasogastric tube insertion', 'Intake and output measurement'],
   },
   {
     number: 7,
-    title: 'Medication Administration',
-    topics: ['Rights of medication administration', 'Oral, topical, and inhaled medications', 'Injections (subcutaneous, intramuscular)', 'Safe drug handling'],
+    title: 'Oxygenation',
+    competency: '7093.4.7',
+    topics: ['Respiratory assessment', 'Oxygen administration', 'Suctioning techniques', 'Airway maintenance'],
   },
   {
     number: 8,
-    title: 'IV Therapy & Phlebotomy',
-    topics: ['IV access and maintenance', 'IV fluid therapy', 'Blood specimen collection', 'Complications and monitoring'],
+    title: 'Medication Administration',
+    competency: '7093.4.8',
+    topics: ['Rights of medication administration', 'Oral, topical, and inhaled routes', 'IM and subcutaneous injections', 'Medication error prevention'],
+  },
+  {
+    number: 9,
+    title: 'Elimination',
+    competency: '7093.4.9',
+    topics: ['Urinary catheter care', 'Enemas and bowel care', 'Ostomy care', 'Comprehensive care planning'],
+  },
+  {
+    number: 10,
+    title: 'Specimen Collection',
+    competency: '7093.4.10',
+    topics: ['Blood, wound & sputum specimens', 'Urinary specimens', 'Abnormal lab value recognition', 'SBAR plan of care'],
+  },
+  {
+    number: 11,
+    title: 'Nursing Skills Simulation',
+    competency: '7093.4.11',
+    topics: ['Simulation Learning System (SLS)', 'Lisa Rae – Fall & pressure ulcer risk', 'Bernadette Jackson – Confusion/infection', 'Digital clinical skills demonstration'],
   },
 ];
 ---
@@ -52,21 +78,26 @@ const modules = [
   <h1>D442 Basic Nursing Skills</h1>
   <p>
     Welcome to the class notes for <strong>D442 – Basic Nursing Skills</strong> at
-    <strong>Western Governors University</strong>. Use the navigation above or the module
+    <strong>Western Governors University</strong>. Use the navigation above or the section
     cards below to browse each topic.
   </p>
 
   <div class="note">
     <strong>📌 Study Tip</strong>
-    These notes are a supplement to your textbook and ATI resources. Always refer to
+    These notes are a supplement to your textbook and Sherpath resources. Always refer to
     official WGU course materials for authoritative content.
   </div>
 
-  <h2>Course Modules</h2>
+  <p>
+    <a href={`${base}course-overview`}><strong>📋 View Full Course Overview</strong></a>
+    — competencies, assessments, Ticket to Ride requirements, learning resources, and lab prep.
+  </p>
+
+  <h2>Course Sections</h2>
   <div class="module-grid">
     {modules.map((mod) => (
       <a href={`${base}module-${mod.number}`} class="module-card">
-        <div class="module-number">Module {mod.number}</div>
+        <div class="module-number">Section {mod.number} &middot; {mod.competency}</div>
         <div class="module-title">{mod.title}</div>
         <ul class="module-topics">
           {mod.topics.map((t) => <li>{t}</li>)}
@@ -77,14 +108,14 @@ const modules = [
 
   <h2>About This Course</h2>
   <p>
-    D442 is a competency-based course that introduces the fundamental skills required for
-    nursing practice. Topics span patient safety, infection prevention, clinical assessment,
-    personal care, mobility, wound management, medication delivery, and intravenous therapy.
+    D442 is a competency-based course that introduces foundational principles of the nursing
+    process and the clinical judgment model, health assessment techniques, and communication
+    skills for diverse adult patients across the lifespan.
   </p>
   <p>
-    Upon completing this course, students should be able to perform basic nursing procedures
-    safely and competently, communicate assessment findings clearly, and apply evidence-based
-    standards of care.
+    Skills focus on vital signs, medication administration, infection control, nutrition,
+    elimination, mobility, oxygenation, and skin integrity. Students must be successful on
+    lab assessments to progress to Adult Health I clinical.
   </p>
 </Layout>
 

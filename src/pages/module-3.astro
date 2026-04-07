@@ -2,144 +2,106 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Module 3 – Patient Assessment">
-  <h1>Module 3: Patient Assessment</h1>
+<Layout title="Section 3 – Infection Control">
+  <h1>Section 3: Infection Control</h1>
+  <p><em>Competency 7093.4.3 – Demonstrates Sterile Techniques for Infection Control</em></p>
   <p>
-    A thorough, systematic assessment is the foundation of the nursing process. Data gathered
-    guides planning, interventions, and evaluation of patient outcomes.
+    Demonstrate effective hand hygiene, equipment use for infection control, sterile and
+    non-sterile gloving, PPE, and maintaining a sterile field.
   </p>
 
-  <h2>The Nursing Process (ADPIE)</h2>
+  <h2>Hand Hygiene</h2>
+  <p>Hand hygiene is the single most effective way to prevent healthcare-associated infections (HAIs).</p>
+  <h3>WHO 5 Moments for Hand Hygiene</h3>
+  <ol>
+    <li>Before touching a patient</li>
+    <li>Before clean/aseptic procedures</li>
+    <li>After body-fluid exposure</li>
+    <li>After touching a patient</li>
+    <li>After touching patient surroundings</li>
+  </ol>
   <ul>
-    <li><strong>A</strong>ssessment — collect subjective and objective data</li>
-    <li><strong>D</strong>iagnosis — identify nursing diagnoses (NANDA)</li>
-    <li><strong>P</strong>lanning — establish goals and expected outcomes</li>
-    <li><strong>I</strong>mplementation — perform nursing interventions</li>
-    <li><strong>E</strong>valuation — determine whether goals were met; revise as needed</li>
+    <li>Use <strong>alcohol-based hand rub (ABHR)</strong> for most clinical situations.</li>
+    <li>Use <strong>soap and water</strong> when hands are visibly soiled or after caring for a patient with <em>Clostridioides difficile</em>.</li>
+    <li>Wash with soap and water for at least <strong>20 seconds</strong>.</li>
   </ul>
 
-  <h2>Types of Data</h2>
-  <ul>
-    <li><strong>Subjective:</strong> What the patient reports (symptoms, feelings, history).</li>
-    <li><strong>Objective:</strong> What the nurse observes, measures, or detects (signs, vital signs, lab results).</li>
-  </ul>
-
-  <h2>Head-to-Toe Physical Assessment</h2>
-  <h3>General Survey</h3>
-  <ul>
-    <li>Level of consciousness (LOC), appearance, affect, hygiene, apparent distress.</li>
-    <li>Height, weight, BMI.</li>
-  </ul>
-
-  <h3>Neurological</h3>
-  <ul>
-    <li>Glasgow Coma Scale (GCS): Eye opening (1–4) + Verbal response (1–5) + Motor response (1–6) = 3–15 total.</li>
-    <li>Pupillary response: PERRLA (Pupils Equal, Round, Reactive to Light and Accommodation).</li>
-    <li>Orientation: Person, place, time, event.</li>
-    <li>Cranial nerve assessment as indicated.</li>
-  </ul>
-
-  <h3>Cardiovascular</h3>
-  <ul>
-    <li>Heart rate and rhythm; auscultate S1 and S2 at 4 landmarks (aortic, pulmonic, Erb's point, tricuspid, mitral).</li>
-    <li>Peripheral pulses: Compare bilateral radial, brachial, femoral, popliteal, posterior tibial, dorsalis pedis.</li>
-    <li>Edema: Grade 1+ (trace) to 4+ (severe, pitting).</li>
-    <li>Capillary refill: Normal &lt; 2 seconds.</li>
-  </ul>
-
-  <h3>Respiratory</h3>
-  <ul>
-    <li>Respiratory rate, depth, rhythm, and effort.</li>
-    <li>Breath sounds: Vesicular (normal), bronchovesicular, bronchial, adventitious (crackles, wheezes, rhonchi, stridor, pleural friction rub).</li>
-    <li>Oxygen saturation (SpO₂).</li>
-    <li>Use of accessory muscles, nasal flaring, tripod positioning.</li>
-  </ul>
-
-  <h3>Gastrointestinal</h3>
-  <ul>
-    <li>Inspect abdomen: Shape, symmetry, distension, visible peristalsis.</li>
-    <li>Auscultate bowel sounds in all 4 quadrants (5 min per quadrant before reporting absence).</li>
-    <li>Palpate: Tenderness, guarding, rigidity, masses.</li>
-    <li>Last bowel movement and characteristics.</li>
-  </ul>
-
-  <h3>Genitourinary</h3>
-  <ul>
-    <li>Urine output: Minimum 0.5 mL/kg/hr (adult); color, clarity, odor.</li>
-    <li>Bladder distension assessment.</li>
-    <li>Presence of urinary catheter — confirm catheter care performed per protocol.</li>
-  </ul>
-
-  <h3>Musculoskeletal</h3>
-  <ul>
-    <li>Muscle strength: Grade 0 (no contraction) – 5 (full strength against resistance).</li>
-    <li>Range of motion (ROM): Active vs. passive.</li>
-    <li>Gait, balance, coordination.</li>
-  </ul>
-
-  <h3>Integumentary</h3>
-  <ul>
-    <li>Color (pallor, cyanosis, jaundice, erythema), temperature, moisture, turgor.</li>
-    <li>Lesions: ABCDE of melanoma (Asymmetry, Border, Color, Diameter, Evolution).</li>
-    <li>Pressure injuries: Braden Scale (risk assessment) and staging (Stage I–IV, unstageable, deep tissue injury).</li>
-  </ul>
-
-  <h2>Pain Assessment</h2>
-  <p>Pain is considered the fifth vital sign. Select a scale appropriate for the patient's age and cognitive status.</p>
+  <h2>Transmission-Based Precautions</h2>
   <table>
     <thead>
-      <tr><th>Scale</th><th>Best Used For</th><th>Description</th></tr>
+      <tr><th>Type</th><th>Route</th><th>PPE Required</th><th>Examples</th></tr>
     </thead>
     <tbody>
-      <tr>
-        <td>NRS (0–10)</td>
-        <td>Adults who can self-report</td>
-        <td>0 = no pain; 10 = worst imaginable pain</td>
-      </tr>
-      <tr>
-        <td>Wong-Baker FACES</td>
-        <td>Children ≥ 3 yr; adults with literacy challenges</td>
-        <td>Six faces from happy (0) to crying (10)</td>
-      </tr>
-      <tr>
-        <td>FLACC</td>
-        <td>Infants; non-verbal patients</td>
-        <td>Scores Face, Legs, Activity, Cry, Consolability (0–10)</td>
-      </tr>
-      <tr>
-        <td>CPOT</td>
-        <td>Critically ill / sedated patients</td>
-        <td>Critical-Care Pain Observation Tool (0–8)</td>
-      </tr>
+      <tr><td><strong>Standard</strong></td><td>Blood, body fluids, non-intact skin</td><td>Gloves; mask/gown/goggles if splash risk</td><td>All patients</td></tr>
+      <tr><td><strong>Contact</strong></td><td>Direct / indirect contact</td><td>Gloves &amp; gown</td><td>MRSA, VRE, C. diff, scabies</td></tr>
+      <tr><td><strong>Droplet</strong></td><td>Respiratory droplets &gt; 5 µm</td><td>Surgical mask (within 3 ft), eye protection</td><td>Influenza, pertussis, meningitis</td></tr>
+      <tr><td><strong>Airborne</strong></td><td>Droplet nuclei ≤ 5 µm</td><td>N95 respirator, negative-pressure room</td><td>TB, measles, varicella</td></tr>
     </tbody>
   </table>
-  <div class="tip">
-    <strong>💡 OLDCARTS Mnemonic</strong>
-    Onset, Location, Duration, Characteristics, Aggravating factors, Relieving factors,
-    Treatment, Severity — use to fully characterize any pain complaint.
-  </div>
-
-  <h2>Documentation</h2>
-  <ul>
-    <li>Document findings promptly, accurately, and objectively.</li>
-    <li>Use approved abbreviations per facility policy.</li>
-    <li>Follow the facility's EHR (Electronic Health Record) charting structure.</li>
-    <li>Report abnormal findings to the provider immediately and document the communication.</li>
-    <li>Never chart care that was not given; never alter or delete prior entries.</li>
-  </ul>
 
   <div class="warning">
-    <strong>⚠️ Legal Reminder</strong>
-    The medical record is a legal document. Accurate, timely documentation protects the
-    patient and the nurse. If it isn't charted, legally it wasn't done.
+    <strong>⚠️ PPE Sequence</strong>
+    Don PPE before entering the room. Doff carefully to avoid self-contamination: remove
+    gloves first, perform hand hygiene, then remove gown, mask, and goggles in the correct sequence.
   </div>
+
+  <h2>Sterile vs. Clean Technique</h2>
+  <table>
+    <thead>
+      <tr><th>Technique</th><th>When Used</th><th>Key Principles</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Surgical aseptic (sterile)</strong></td><td>Invasive procedures (catheter insertion, wound care, IV start)</td><td>No microorganisms; sterile field must be maintained</td></tr>
+      <tr><td><strong>Medical aseptic (clean)</strong></td><td>Most bedside care activities</td><td>Reduces number of microorganisms; breaks chain of infection</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Principles of Sterile Technique</h3>
+  <ul>
+    <li>A sterile field becomes contaminated if touched by a non-sterile object.</li>
+    <li>Any item below the level of the sterile field is considered contaminated.</li>
+    <li>A sterile field must be kept in sight at all times.</li>
+    <li>Moisture contaminates a sterile field (strike-through contamination).</li>
+    <li>Edges of a sterile field (1 inch border) are considered contaminated.</li>
+    <li>When in doubt — throw it out.</li>
+  </ul>
+
+  <h2>Gloving</h2>
+  <ul>
+    <li><strong>Non-sterile gloving:</strong> Don gloves when contact with blood, body fluids, or non-intact skin is anticipated; change between patients; perform hand hygiene after removal.</li>
+    <li><strong>Sterile gloving:</strong> Required for invasive procedures; use open or closed gloving technique; maintain sterility during and after donning.</li>
+  </ul>
+
+  <h3>Essential Lessons (Sherpath, Section 3 – Chapter 28)</h3>
+  <ul>
+    <li>Overview of Immunity</li>
+    <li>Spread of Infection</li>
+    <li>Infection: Assess and Recognize Cues</li>
+  </ul>
+
+  <h3>Essential Reading</h3>
+  <ul>
+    <li>Chapter 28, Infection Prevention and Control: pp. 452–498</li>
+  </ul>
+
+  <h3>Clinical Skills</h3>
+  <ul>
+    <li>Performing Hand Hygiene</li>
+    <li>Using Personal Protective Equipment</li>
+    <li>Establishing and Maintaining a Sterile Field</li>
+    <li>Adding Items to a Sterile Field</li>
+    <li>Pouring a Sterile Solution</li>
+    <li>Using a Prepackaged Sterile Kit</li>
+    <li>Performing Sterile Gloving</li>
+  </ul>
 
   <h2>Key Terms</h2>
   <ul>
-    <li><strong>ADPIE:</strong> Assessment, Diagnosis, Planning, Implementation, Evaluation — steps of the nursing process.</li>
-    <li><strong>GCS:</strong> Glasgow Coma Scale — standardized neurological assessment tool.</li>
-    <li><strong>Braden Scale:</strong> Risk assessment tool for pressure injury development.</li>
-    <li><strong>NRS:</strong> Numeric Rating Scale for pain.</li>
-    <li><strong>OLDCARTS:</strong> Mnemonic for comprehensive pain assessment.</li>
+    <li><strong>HAI:</strong> Healthcare-associated infection — infection acquired during healthcare delivery.</li>
+    <li><strong>ABHR:</strong> Alcohol-based hand rub.</li>
+    <li><strong>PPE:</strong> Personal protective equipment.</li>
+    <li><strong>Sterile field:</strong> A microorganism-free area established around the site of an invasive procedure.</li>
+    <li><strong>Strike-through contamination:</strong> Contamination of a sterile field via moisture passing through a barrier.</li>
+    <li><strong>Chain of infection:</strong> Infectious agent → reservoir → portal of exit → mode of transmission → portal of entry → susceptible host.</li>
   </ul>
 </Layout>
