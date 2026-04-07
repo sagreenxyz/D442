@@ -2,168 +2,135 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Module 8 – IV Therapy & Phlebotomy">
-  <h1>Module 8: IV Therapy &amp; Phlebotomy</h1>
+<Layout title="Section 8 – Medication Administration">
+  <h1>Section 8: Medication Administration</h1>
+  <p><em>Competency 7093.4.8 – Performs Medication Administration</em></p>
   <p>
-    Intravenous therapy and blood specimen collection are essential nursing skills. They
-    require strict aseptic technique, thorough assessment of access sites, and ongoing
-    monitoring for complications.
+    Administer medications to adult patients using safe, person-centered practices based on
+    medication error prevention principles.
   </p>
 
-  <h2>Peripheral IV Access</h2>
-  <h3>Site Selection</h3>
-  <ul>
-    <li>Use the non-dominant arm whenever possible.</li>
-    <li>Start distally; move proximally for subsequent attempts.</li>
-    <li>Preferred sites: Forearm (cephalic, basilic, median cubital), back of hand (metacarpal veins).</li>
-    <li>Avoid: Antecubital fossa (limits mobility), sites of infection/phlebitis/infiltration, extremity with AV fistula, post-mastectomy side, or arm with lymphedema.</li>
-  </ul>
-  <h3>Catheter Selection</h3>
+  <h2>The Rights of Medication Administration</h2>
   <table>
     <thead>
-      <tr><th>Gauge</th><th>Color</th><th>Use</th></tr>
+      <tr><th>Right</th><th>Verification</th></tr>
     </thead>
     <tbody>
-      <tr><td>14–16 G</td><td>Orange / Grey</td><td>Rapid fluid resuscitation, blood products (large bore)</td></tr>
-      <tr><td>18 G</td><td>Green</td><td>Blood products, viscous medications</td></tr>
-      <tr><td>20 G</td><td>Pink/Rose</td><td>Most adult IV medications; blood draws</td></tr>
-      <tr><td>22–24 G</td><td>Blue / Yellow</td><td>Pediatric patients, fragile veins, elderly</td></tr>
+      <tr><td><strong>Right Patient</strong></td><td>Use two identifiers (name + DOB or MRN); scan armband if using barcode MAR</td></tr>
+      <tr><td><strong>Right Drug</strong></td><td>Verify name, spelling, and purpose; clarify look-alike/sound-alike drugs</td></tr>
+      <tr><td><strong>Right Dose</strong></td><td>Recalculate; have second nurse verify high-alert medications</td></tr>
+      <tr><td><strong>Right Route</strong></td><td>Confirm ordered route is appropriate for patient condition</td></tr>
+      <tr><td><strong>Right Time</strong></td><td>Administer within 30-minute window of scheduled time</td></tr>
+      <tr><td><strong>Right Documentation</strong></td><td>Record immediately after administration; never chart in advance</td></tr>
     </tbody>
   </table>
+
   <div class="tip">
-    <strong>💡 Remember</strong>
-    Gauge is inversely proportional to size — a smaller gauge number means a larger catheter
-    lumen and faster flow rate.
+    <strong>💡 Additional Rights</strong>
+    Some institutions add: Right to Refuse, Right Assessment, Right Education, and Right
+    Evaluation — always use clinical judgment along with the core six rights.
   </div>
 
-  <h2>IV Insertion Procedure</h2>
-  <ol>
-    <li>Verify order; gather supplies; perform hand hygiene; don gloves.</li>
-    <li>Apply tourniquet 4–6 inches above insertion site; identify vein.</li>
-    <li>Cleanse site with chlorhexidine (preferred) or alcohol swab; allow to dry completely.</li>
-    <li>Anchor vein; insert catheter at 10–30° angle, bevel up; advance until flashback of blood appears.</li>
-    <li>Lower angle; advance catheter off stylet; remove stylet.</li>
-    <li>Release tourniquet; apply extension set / cap; flush with normal saline (2–5 mL).</li>
-    <li>Secure catheter; apply transparent semipermeable membrane (TSM) dressing; label with date, time, gauge, and initials.</li>
-    <li>Dispose of sharps immediately in sharps container.</li>
-  </ol>
-
-  <h2>IV Fluid Therapy</h2>
-  <h3>IV Fluid Tonicity</h3>
-  <table>
-    <thead>
-      <tr><th>Type</th><th>Examples</th><th>Effect</th><th>Clinical Use</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Isotonic</strong></td>
-        <td>0.9% NaCl (NS), LR, D5W (in bag — isotonic; acts hypotonic once metabolized)</td>
-        <td>Expands intravascular volume; no net fluid shift</td>
-        <td>Volume replacement, surgical patients, shock</td>
-      </tr>
-      <tr>
-        <td><strong>Hypotonic</strong></td>
-        <td>0.45% NaCl (½ NS), 0.33% NaCl</td>
-        <td>Fluid shifts into cells — hydrates intracellular compartment</td>
-        <td>Cellular dehydration, DKA (after initial resuscitation)</td>
-      </tr>
-      <tr>
-        <td><strong>Hypertonic</strong></td>
-        <td>3% NaCl, D10W, D5NS, D5LR</td>
-        <td>Draws fluid out of cells into vasculature</td>
-        <td>Severe hyponatremia, cerebral edema</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>IV Flow Rate Calculation</h3>
-  <p><strong>mL/hr = Total Volume (mL) ÷ Time (hr)</strong></p>
-  <p><strong>gtt/min = (Volume mL × Drop factor) ÷ Time in minutes</strong></p>
-  <p>
-    <em>Example:</em> Infuse 1000 mL NS over 8 hours using tubing with a drop factor of
-    15 gtt/mL.<br />
-    gtt/min = (1000 × 15) ÷ 480 = 31.25 ≈ 31 gtt/min
-  </p>
-
-  <h2>IV Complications</h2>
-  <table>
-    <thead>
-      <tr><th>Complication</th><th>Signs &amp; Symptoms</th><th>Nursing Action</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Infiltration</td>
-        <td>Swelling, coolness, pallor, slowed infusion</td>
-        <td>Stop infusion; remove catheter; elevate extremity; apply warm/cold compress per policy</td>
-      </tr>
-      <tr>
-        <td>Extravasation</td>
-        <td>Infiltration of vesicant drug; tissue damage, blistering</td>
-        <td>Stop immediately; do not remove catheter (may need antidote instillation); notify provider; follow facility extravasation protocol</td>
-      </tr>
-      <tr>
-        <td>Phlebitis</td>
-        <td>Redness, warmth, swelling, tenderness along vein, palpable cord</td>
-        <td>Discontinue IV; rotate to new site; apply warm compress</td>
-      </tr>
-      <tr>
-        <td>Infection / Sepsis</td>
-        <td>Purulent drainage, fever, systemic signs</td>
-        <td>Remove catheter; culture site; notify provider; blood cultures if systemic</td>
-      </tr>
-      <tr>
-        <td>Air embolism</td>
-        <td>Sudden dyspnea, chest pain, hypotension, "mill wheel" murmur</td>
-        <td>Position left lateral Trendelenburg; O₂; notify provider STAT</td>
-      </tr>
-      <tr>
-        <td>Fluid overload</td>
-        <td>Dyspnea, crackles, edema, hypertension, bounding pulse</td>
-        <td>Slow or stop infusion; elevate HOB; notify provider; administer diuretics as ordered</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>IV Site Maintenance</h2>
+  <h2>Medication Error Prevention</h2>
   <ul>
-    <li>Assess site at the beginning of every shift and before each infusion.</li>
-    <li>Change peripheral IV site every 72–96 hours (or per facility policy); change if signs of complication develop.</li>
-    <li>Change IV tubing every 72–96 hours for standard infusions; every 24 hours for lipids and blood.</li>
-    <li>Flush with saline before and after each medication; use SASH (Saline–Administer–Saline–Heparin) for heparin-lock lines per facility policy.</li>
+    <li>Never administer a medication you did not personally prepare.</li>
+    <li>Do not administer a medication you cannot identify.</li>
+    <li>Use the barcode medication administration (BCMA) system when available.</li>
+    <li>Avoid distractions during medication preparation.</li>
+    <li>Double-check calculations independently; use a second nurse for high-alert medications (heparin, insulin, chemotherapy).</li>
+    <li>Report errors and near-misses through the facility's incident reporting system.</li>
   </ul>
 
-  <h2>Phlebotomy (Blood Specimen Collection)</h2>
-  <h3>Order of Draw</h3>
-  <p>Using the correct order prevents contamination of tube additives:</p>
-  <ol>
-    <li>Blood cultures (yellow / sterile)</li>
-    <li>Coagulation tubes (light blue — sodium citrate)</li>
-    <li>Serum separator / SST (gold / red-grey tiger top)</li>
-    <li>Heparin tubes (green)</li>
-    <li>EDTA / CBC tubes (lavender / purple)</li>
-    <li>Oxalate / fluoride tubes (grey — glucose, lactate)</li>
-  </ol>
-  <div class="tip">
-    <strong>💡 Mnemonic: "Stop Light, Got Big Lavender Grapes"</strong>
-    Sterile, Light blue, Gold, Blue/Heparin, Lavender, Grey
-  </div>
+  <h2>Routes of Administration</h2>
+  <h3>Oral &amp; Enteral</h3>
+  <ul>
+    <li>Most common route; convenient and cost-effective.</li>
+    <li>Do not crush extended-release, enteric-coated, or sublingual tablets unless approved by pharmacist.</li>
+    <li>For NG/PEG tube administration: flush before and after; administer medications separately.</li>
+  </ul>
 
-  <h3>Venipuncture Procedure</h3>
-  <ol>
-    <li>Verify order; label tubes at bedside before drawing (use 2 patient identifiers).</li>
-    <li>Perform hand hygiene; apply tourniquet; select site; cleanse with antiseptic; allow to dry.</li>
-    <li>Insert needle bevel up at 15–30° angle; anchor vein; advance tube(s) following order of draw.</li>
-    <li>Release tourniquet before removing needle; apply pressure 2–3 minutes; apply bandage.</li>
-    <li>Gently invert tubes 5–10 times to mix additives; transport per facility lab requirements.</li>
-  </ol>
+  <h3>Topical &amp; Transdermal</h3>
+  <ul>
+    <li>Apply to clean, dry, intact skin; rotate sites to prevent irritation.</li>
+    <li>Wear gloves when applying; remove previous patch/ointment before applying new dose.</li>
+    <li>Nitroglycerin ointment: measure dose on paper; apply to non-hairy skin; document site.</li>
+    <li>Estrogen patch: apply to lower abdomen or buttocks; rotate sites weekly.</li>
+  </ul>
+
+  <h3>Ophthalmic &amp; Otic</h3>
+  <ul>
+    <li>Eye drops: pull lower conjunctival sac down; instill drops in conjunctival sac, not directly on cornea.</li>
+    <li>Ear drops (adults): pull pinna up and back to straighten ear canal; keep position for 5 minutes after instillation.</li>
+  </ul>
+
+  <h3>Inhalation</h3>
+  <ul>
+    <li><strong>Metered-dose inhaler (MDI):</strong> Shake; exhale; press and inhale slowly over 3–5 sec; hold breath 10 sec; spacer recommended.</li>
+    <li><strong>Dry powder inhaler (DPI):</strong> Do not shake; load dose; inhale rapidly and deeply.</li>
+    <li><strong>Nebulizer:</strong> Delivers medication as fine mist over 10–15 min; breathe normally through mouthpiece.</li>
+  </ul>
+
+  <h3>Parenteral — Injections</h3>
+  <table>
+    <thead>
+      <tr><th>Route</th><th>Needle Gauge/Length</th><th>Sites</th><th>Max Volume</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Intradermal (ID)</td><td>25–27G, 3/8–5/8"</td><td>Inner forearm, upper back</td><td>0.1 mL</td></tr>
+      <tr><td>Subcutaneous (SQ)</td><td>25–31G, 3/8–5/8"</td><td>Abdomen, thigh, upper arm, upper back</td><td>1 mL</td></tr>
+      <tr><td>Intramuscular (IM)</td><td>20–23G, 1–1.5"</td><td>Ventrogluteal, deltoid, vastus lateralis</td><td>3 mL (deltoid 1 mL)</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li>Use Z-track technique for IM injections to prevent leakage and irritation.</li>
+    <li>Do not recap used needles; dispose in sharps container immediately.</li>
+    <li>Aspirate not required for SQ or most IM sites (current evidence-based practice).</li>
+  </ul>
+
+  <h3>Insulin Administration</h3>
+  <ul>
+    <li>Use insulin syringes only (units marked); never substitute with other syringes.</li>
+    <li>Rotate injection sites within the same anatomical region to ensure consistent absorption.</li>
+    <li>Abdomen: fastest absorption; thigh: slowest; arm/buttock: intermediate.</li>
+    <li>When mixing insulins: draw clear (regular/rapid-acting) before cloudy (NPH).</li>
+  </ul>
+
+  <h3>Essential Lessons (Sherpath – Chapters 31, 9)</h3>
+  <ul>
+    <li>Overview of Concepts in Pharmacology</li>
+    <li>Principles of Safe Medication Administration</li>
+    <li>Medication Administration: Assess, Analyze, Plan, Implement, Evaluate</li>
+    <li>Medication and Its Use; Medication-Related Problems and Older Adults</li>
+  </ul>
+
+  <h3>Essential Readings</h3>
+  <ul>
+    <li>Chapter 31, Medication Administration: pp. 624–708</li>
+    <li>Chapter 9, Clinical Judgment to Promote Safe Medication Use: pp. 112–131</li>
+  </ul>
+
+  <h3>Clinical Skills</h3>
+  <ul>
+    <li>Administering Oral Medications</li>
+    <li>Documenting Medication Administration</li>
+    <li>Handling Medication Variations / Preventing Medication Errors</li>
+    <li>Using Automated Medication Dispensing Systems</li>
+    <li>Safe Handling of Hazardous Medications</li>
+    <li>Applying Topical Medications; Estrogen Patch and Nitroglycerin Ointment</li>
+    <li>Administering Eye and Ear Medications</li>
+    <li>Using MDI, DPI, and Nebulized Medications</li>
+    <li>Inserting Rectal Medication</li>
+    <li>Preparing Injections from Ampule and Vial</li>
+    <li>Preparing and Administering Insulin; Drawing up Multiple Types of Insulin</li>
+    <li>Administering Intradermal, Subcutaneous, and Intramuscular Injections</li>
+  </ul>
 
   <h2>Key Terms</h2>
   <ul>
-    <li><strong>Infiltration:</strong> Inadvertent administration of non-vesicant IV fluid into surrounding tissue.</li>
-    <li><strong>Extravasation:</strong> Infiltration of a vesicant (tissue-damaging) medication.</li>
-    <li><strong>Phlebitis:</strong> Inflammation of a vein, often from IV catheter irritation.</li>
-    <li><strong>Vesicant:</strong> Medication capable of causing tissue necrosis if extravasation occurs (e.g., dopamine, calcium chloride, many chemotherapy agents).</li>
-    <li><strong>Tonicity:</strong> Osmotic concentration of a solution relative to body fluids.</li>
-    <li><strong>Order of draw:</strong> Standardized sequence for filling blood tubes to prevent additive cross-contamination.</li>
+    <li><strong>BCMA:</strong> Barcode medication administration — system to verify patient and medication at point of care.</li>
+    <li><strong>MAR:</strong> Medication Administration Record.</li>
+    <li><strong>High-alert medication:</strong> Drug with significant risk of causing serious harm if used in error (e.g., insulin, heparin, chemotherapy).</li>
+    <li><strong>Z-track:</strong> IM injection technique that displaces skin before injection to seal medication in muscle and prevent tracking.</li>
+    <li><strong>IDM:</strong> Intradermal — used for allergy testing and TB (Mantoux) skin tests.</li>
   </ul>
 </Layout>

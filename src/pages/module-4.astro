@@ -2,56 +2,57 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Module 4 – Hygiene & Comfort">
-  <h1>Module 4: Hygiene &amp; Comfort</h1>
+<Layout title="Section 4 – Personal Hygiene">
+  <h1>Section 4: Personal Hygiene</h1>
+  <p><em>Competency 7093.4.4 – Demonstrates Daily Personal Hygiene Practices</em></p>
   <p>
-    Maintaining hygiene and comfort supports physical health, prevents infection, promotes
-    dignity, and contributes to psychological well-being. The nurse collaborates with the
-    care team to individualize hygiene care based on the patient's condition and preferences.
+    Perform personal hygiene (bed baths, oral hygiene) in the laboratory setting. Assess
+    skin and detect abnormalities during hygiene care.
   </p>
 
-  <h2>Bathing</h2>
+  <h2>Bed Baths</h2>
   <h3>Types of Baths</h3>
   <ul>
-    <li><strong>Complete bed bath:</strong> Nurse performs all bathing for a dependent patient.</li>
-    <li><strong>Partial bed bath:</strong> Patient performs part of the bath; nurse assists with areas they cannot reach.</li>
+    <li><strong>Complete bed bath:</strong> Nurse performs all bathing for a fully dependent patient.</li>
+    <li><strong>Partial bed bath:</strong> Patient performs part; nurse assists with areas they cannot reach.</li>
+    <li><strong>Disposable bed bath:</strong> Pre-moistened, disposable cloths; no rinsing required.</li>
     <li><strong>Tub bath / shower:</strong> For ambulatory patients who can safely use these facilities.</li>
-    <li><strong>Chlorhexidine gluconate (CHG) bath:</strong> Evidence-based practice to reduce HAIs, especially in ICU settings.</li>
   </ul>
   <h3>General Bathing Principles</h3>
   <ul>
-    <li>Maintain privacy and dignity throughout the procedure.</li>
-    <li>Use warm water (105–115 °F / 41–46 °C); check with a thermometer or wrist test.</li>
-    <li>Wash from clean to dirty; wash perineum last.</li>
+    <li>Maintain privacy and dignity throughout.</li>
+    <li>Use warm water (105–115 °F / 41–46 °C); verify temperature.</li>
+    <li>Wash from clean to dirty areas; wash perineum last.</li>
     <li>Assess skin condition (color, integrity, lesions, pressure injuries) during the bath.</li>
-    <li>Keep patient covered as much as possible to prevent chilling and protect dignity.</li>
+    <li>Keep patient covered to prevent chilling and protect dignity.</li>
   </ul>
 
-  <h2>Oral Care</h2>
+  <h2>Oral Hygiene</h2>
   <ul>
-    <li>Perform oral care at least twice daily (after every meal and before bed is ideal).</li>
-    <li>Unconscious / mechanically ventilated patients: Use CHG oral rinse per protocol — linked to prevention of ventilator-associated pneumonia (VAP).</li>
-    <li>Assess for oral lesions, dryness, bleeding gums, denture fit.</li>
-    <li>Position the patient upright (HOB ≥ 30°) to prevent aspiration during oral care.</li>
-    <li>Denture care: Remove, rinse, and clean dentures; store in a labeled container with water when not worn.</li>
+    <li>Perform oral care at least twice daily.</li>
+    <li>Unconscious/ventilated patients: Use CHG oral rinse per protocol — prevents ventilator-associated pneumonia (VAP).</li>
+    <li>Assess for oral lesions, dryness, bleeding gums, and denture fit.</li>
+    <li>Position patient upright (HOB ≥ 30°) to prevent aspiration during oral care.</li>
+    <li>Denture care: Remove, rinse, and clean; store in labeled container with water when not worn.</li>
   </ul>
 
-  <h2>Hair &amp; Nail Care</h2>
+  <h2>Hair, Nail &amp; Foot Care</h2>
   <ul>
-    <li>Assess scalp for lesions, dryness, lice (pediculosis capitis).</li>
-    <li>Comb / brush gently, detangling from ends toward the scalp.</li>
-    <li>Trim fingernails straight across and smooth edges; avoid cutting toenails of diabetic patients or those with peripheral vascular disease — refer to podiatry.</li>
+    <li>Assess scalp for lesions, dryness, and lice (pediculosis capitis).</li>
+    <li>Comb or brush gently, detangling from ends toward the scalp.</li>
+    <li>Nail care: Trim fingernails straight across and smooth edges.</li>
+    <li>Do <strong>not</strong> cut toenails of diabetic patients or those with peripheral vascular disease — refer to podiatry.</li>
   </ul>
 
-  <h2>Pressure Injury Prevention</h2>
+  <h2>Skin Integrity &amp; Pressure Injury Assessment</h2>
   <p>
-    Pressure injuries result from sustained pressure, shear, friction, and moisture. They
-    are largely preventable with consistent nursing interventions.
+    Assess skin during each hygiene encounter. Use the <strong>Braden Scale</strong> to
+    identify patients at risk for pressure injuries.
   </p>
-  <h3>Braden Scale Categories</h3>
+  <h3>Braden Scale Subscales</h3>
   <table>
     <thead>
-      <tr><th>Subscale</th><th>Scored</th><th>Focus</th></tr>
+      <tr><th>Subscale</th><th>Score Range</th><th>Focus</th></tr>
     </thead>
     <tbody>
       <tr><td>Sensory perception</td><td>1–4</td><td>Ability to respond to pressure-related discomfort</td></tr>
@@ -64,15 +65,6 @@ import Layout from '../layouts/Layout.astro';
   </table>
   <p>Total score ≤ 18 = at risk; ≤ 12 = high risk; ≤ 9 = very high risk.</p>
 
-  <h3>Prevention Strategies</h3>
-  <ul>
-    <li>Reposition immobile patients at least every 2 hours.</li>
-    <li>Use pressure-redistributing surfaces (foam overlays, alternating-pressure mattresses).</li>
-    <li>Keep skin clean and dry; apply moisture barrier creams to at-risk areas.</li>
-    <li>Minimize shear and friction during repositioning (use lift sheets, draw sheets).</li>
-    <li>Optimize nutrition and hydration.</li>
-  </ul>
-
   <h3>Pressure Injury Staging</h3>
   <table>
     <thead>
@@ -81,42 +73,49 @@ import Layout from '../layouts/Layout.astro';
     <tbody>
       <tr><td>Stage I</td><td>Non-blanchable erythema of intact skin</td></tr>
       <tr><td>Stage II</td><td>Partial-thickness skin loss; shallow open ulcer or intact/ruptured blister</td></tr>
-      <tr><td>Stage III</td><td>Full-thickness skin loss; subcutaneous fat visible; no fascia, muscle, or bone exposed</td></tr>
+      <tr><td>Stage III</td><td>Full-thickness skin loss; subcutaneous fat visible</td></tr>
       <tr><td>Stage IV</td><td>Full-thickness tissue loss exposing bone, tendon, or muscle</td></tr>
       <tr><td>Unstageable</td><td>Full-thickness loss covered by slough or eschar; depth unknown</td></tr>
       <tr><td>Deep Tissue Injury (DTI)</td><td>Purple/maroon intact or non-intact skin; blood-filled blister</td></tr>
     </tbody>
   </table>
 
-  <h2>Positioning &amp; Comfort</h2>
-  <table>
-    <thead>
-      <tr><th>Position</th><th>Description</th><th>Indication</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Fowler's (45–60°)</td><td>Head of bed elevated 45–60°</td><td>Respiratory distress, eating, cardiac conditions</td></tr>
-      <tr><td>Semi-Fowler's (30–45°)</td><td>HOB 30–45°</td><td>Prevent VAP, comfort, post-op</td></tr>
-      <tr><td>Supine</td><td>Lying flat on back</td><td>Many procedures; use caution with aspiration risk</td></tr>
-      <tr><td>Prone</td><td>Lying face-down</td><td>ARDS (improves oxygenation), pressure ulcer prevention (alternate)</td></tr>
-      <tr><td>Lateral (Side-lying)</td><td>Patient on side</td><td>Pressure relief, post-op, unconscious patients</td></tr>
-      <tr><td>Sims'</td><td>Semi-prone, left lateral</td><td>Enemas, rectal procedures, unconscious patients</td></tr>
-      <tr><td>Trendelenburg</td><td>HOB lower than feet</td><td>Hypovolemic shock (limited use; avoid in increased ICP)</td></tr>
-      <tr><td>Reverse Trendelenburg</td><td>Feet lower than HOB</td><td>GERD, hiatal hernia management</td></tr>
-    </tbody>
-  </table>
+  <h3>Essential Lessons (Sherpath, Section 4 – Chapter 40)</h3>
+  <ul>
+    <li>Overview of the Integumentary System and Mucous Membranes</li>
+    <li>Integumentary System: Assess and Recognize Cues</li>
+    <li>Integumentary System: Analyze Cues and Prioritize Hypothesis; Plan and Generate Solutions</li>
+    <li>Integumentary System: Implement and Take Action; Evaluate</li>
+  </ul>
 
-  <div class="tip">
-    <strong>💡 Practice Tip</strong>
-    Always explain the procedure to the patient, ensure privacy, raise the bed to working
-    height to protect your back, and lower the bed and raise side rails after repositioning.
-  </div>
+  <h3>Essential Reading</h3>
+  <ul>
+    <li>Chapter 40, Hygiene: pp. 915–970</li>
+  </ul>
+
+  <h3>Clinical Skills</h3>
+  <ul>
+    <li>Performing a Complete or Partial Bed Bath</li>
+    <li>Performing a Disposable Bed Bath</li>
+    <li>Assisting with a Tub Bath or Shower</li>
+    <li>Performing Back Massage</li>
+    <li>Performing Perineal Care (Female and Male)</li>
+    <li>Making an Unoccupied, Occupied, and Surgical Bed</li>
+    <li>Performing Oral Hygiene for an Unconscious Patient</li>
+    <li>Cleaning Dentures</li>
+    <li>Performing Hair Care and Shampooing in Bed</li>
+    <li>Shaving a Male Patient</li>
+    <li>Performing Nail and Foot Care</li>
+    <li>Assisting with a Gown Change</li>
+    <li>HESI: Clinical Nursing Concepts – Dave Mason</li>
+  </ul>
 
   <h2>Key Terms</h2>
   <ul>
-    <li><strong>CHG:</strong> Chlorhexidine gluconate — antimicrobial agent used in bathing and oral care.</li>
-    <li><strong>VAP:</strong> Ventilator-associated pneumonia — a major HAI preventable with oral care and HOB elevation.</li>
-    <li><strong>Shear:</strong> Opposing forces that cause skin layers to slide against each other — a major contributor to pressure injuries.</li>
-    <li><strong>Braden Scale:</strong> Standardized tool to assess pressure injury risk (max score = 23; lower = higher risk).</li>
+    <li><strong>CHG:</strong> Chlorhexidine gluconate — antimicrobial used in bathing and oral care.</li>
+    <li><strong>VAP:</strong> Ventilator-associated pneumonia — preventable HAI.</li>
+    <li><strong>Shear:</strong> Opposing forces that cause skin layers to slide — major contributor to pressure injuries.</li>
+    <li><strong>Braden Scale:</strong> Standardized tool to assess pressure injury risk (max score 23; lower = higher risk).</li>
     <li><strong>HOB:</strong> Head of bed.</li>
   </ul>
 </Layout>
