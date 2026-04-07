@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { lessonSections } from '../../data/lessonsStructure';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+const totalLessons = lessonSections.reduce(
+  (sum, sec) => sum + sec.chapters.reduce((s, ch) => s + ch.lessons.length, 0),
+  0
+);
+---
+
+<Layout title="Lessons">
+  <h1>Lessons</h1>
+  <p>
+    All Sherpath lessons for <strong>D442 – Basic Nursing Skills</strong>, organized by course
+    section and chapter. Select a lesson to view notes and key concepts.
+  </p>
+
+  <div class="note">
+    <strong>📌 {totalLessons} Lessons Total</strong>
+    Content is being added for each lesson. Check back as notes are filled in.
+  </div>
+
+  {lessonSections.map((sec) => (
+    <section class="lesson-section">
+      <h2>
+        <a href={`${base}lessons/${sec.id}`}>Section {sec.number}: {sec.title}</a>
+      </h2>
+      {sec.chapters.map((ch) => (
+        <div class="chapter-block">
+          <h3>Chapter {ch.number}: {ch.title}</h3>
+          <ul class="lesson-list">
+            {ch.lessons.map((lesson) => (
+              <li>
+                <a href={`${base}lessons/${sec.id}/${lesson.id}`}>{lesson.title}</a>
+                <span class="lesson-time">⏱ {lesson.estimatedTime}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  ))}
+</Layout>
+
+<style>
+  .lesson-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .lesson-section h2 a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .lesson-section h2 a:hover {
+    text-decoration: underline;
+  }
+
+  .chapter-block {
+    margin: 1rem 0 1.25rem 0.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--color-accent-dark);
+  }
+
+  .lesson-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  .lesson-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.15rem;
+  }
+  .lesson-list li:hover {
+    background: var(--color-accent);
+  }
+
+  .lesson-list a {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    flex: 1;
+  }
+  .lesson-list a:hover {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .lesson-time {
+    font-size: 0.78rem;
+    color: #888;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+</style>

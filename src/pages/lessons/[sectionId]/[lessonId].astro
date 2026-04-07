@@ -1,0 +1,105 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { lessonSections, type LessonSection, type LessonChapter, type Lesson } from '../../../data/lessonsStructure';
+
+export async function getStaticPaths() {
+  const paths: {
+    params: { sectionId: string; lessonId: string };
+    props: { section: LessonSection; chapter: LessonChapter; lesson: Lesson; prevLesson: { sectionId: string; lessonId: string; title: string } | null; nextLesson: { sectionId: string; lessonId: string; title: string } | null };
+  }[] = [];
+
+  // Build a flat ordered list of all lessons for prev/next navigation
+  const flatLessons: { sectionId: string; lessonId: string; title: string }[] = [];
+  for (const sec of lessonSections) {
+    for (const ch of sec.chapters) {
+      for (const lesson of ch.lessons) {
+        flatLessons.push({ sectionId: sec.id, lessonId: lesson.id, title: lesson.title });
+      }
+    }
+  }
+
+  for (const sec of lessonSections) {
+    for (const ch of sec.chapters) {
+      for (const lesson of ch.lessons) {
+        const flatIdx = flatLessons.findIndex(
+          (l) => l.sectionId === sec.id && l.lessonId === lesson.id
+        );
+        paths.push({
+          params: { sectionId: sec.id, lessonId: lesson.id },
+          props: {
+            section: sec,
+            chapter: ch,
+            lesson,
+            prevLesson: flatIdx > 0 ? flatLessons[flatIdx - 1] : null,
+            nextLesson: flatIdx < flatLessons.length - 1 ? flatLessons[flatIdx + 1] : null,
+          },
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+const { section, chapter, lesson, prevLesson, nextLesson } = Astro.props;
+---
+
+<Layout title={`${lesson.title} – Section ${section.number}`}>
+  <p class="lesson-meta">
+    <a href={`${base}lessons`}>Lessons</a>
+    &rsaquo;
+    <a href={`${base}lessons/${section.id}`}>Section {section.number}: {section.title}</a>
+    &rsaquo;
+    Chapter {chapter.number}
+  </p>
+
+  <h1>{lesson.title}</h1>
+
+  <p class="lesson-info">
+    <span>⏱ Estimated time: <strong>{lesson.estimatedTime}</strong></span>
+    &nbsp;&middot;&nbsp;
+    <span>Chapter {chapter.number}: {chapter.title}</span>
+  </p>
+
+  <div class="note">
+    <strong>📌 Content Coming Soon</strong>
+    Notes for this lesson are being prepared. Check back shortly.
+  </div>
+
+  <div class="page-nav">
+    {prevLesson ? (
+      <a href={`${base}lessons/${prevLesson.sectionId}/${prevLesson.lessonId}`}>
+        ← {prevLesson.title}
+      </a>
+    ) : (
+      <span class="spacer" />
+    )}
+    {nextLesson ? (
+      <a href={`${base}lessons/${nextLesson.sectionId}/${nextLesson.lessonId}`}>
+        {nextLesson.title} →
+      </a>
+    ) : (
+      <span class="spacer" />
+    )}
+  </div>
+</Layout>
+
+<style>
+  .lesson-meta {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  .lesson-meta a {
+    color: var(--color-secondary);
+  }
+
+  .lesson-info {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+</style>

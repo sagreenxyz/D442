@@ -579,6 +579,7 @@ const clientData = JSON.stringify(
           <p class="sidebar-heading">Navigation</p>
           <a href={base} class={`sidebar-link${currentSlug === '' ? ' active' : ''}`}>🏠 Home</a>
           <a href={`${base}course-overview`} class={`sidebar-link${currentSlug === 'course-overview' ? ' active' : ''}`}>📋 Course Overview</a>
+          <a href={`${base}lessons`} class={`sidebar-link${currentSlug === 'lessons' || currentSlug.startsWith('lessons/') ? ' active' : ''}`}>📚 Lessons</a>
 
           <p class="sidebar-heading">Sections</p>
 
