@@ -1,6 +1,12 @@
+export interface SubPage {
+  id: string;   // URL segment, e.g. 'general-survey'
+  title: string;
+}
+
 export interface Section {
   id: string;
   title: string;
+  subPages?: SubPage[];
 }
 
 export interface CourseModule {
@@ -18,7 +24,16 @@ export const courseModules: CourseModule[] = [
     title: 'Health Assessment',
     competency: '7093.4.1',
     sections: [
-      { id: 'health-history', title: 'Page 1: Health History & General Physical' },
+      { id: 'health-history', title: 'Page 1: Health History & General Physical', subPages: [
+        { id: 'general-survey',   title: 'General Survey' },
+        { id: 'neurological',     title: 'Neurological' },
+        { id: 'cardiovascular',   title: 'Cardiovascular' },
+        { id: 'respiratory',      title: 'Respiratory' },
+        { id: 'gastrointestinal', title: 'Gastrointestinal' },
+        { id: 'genitourinary',    title: 'Genitourinary' },
+        { id: 'musculoskeletal',  title: 'Musculoskeletal' },
+        { id: 'integumentary',    title: 'Integumentary' },
+      ]},
       { id: 'older-adult', title: 'Page 2: Older Adult Assessment' },
       { id: 'vital-signs', title: 'Page 3: Vital Signs & Pain Assessment' },
       { id: 'key-terms', title: 'Key Terms' },
@@ -168,5 +183,10 @@ export const courseModules: CourseModule[] = [
 export const pageOrder: string[] = [
   '',
   'course-overview',
-  ...courseModules.map((m) => m.slug),
+  ...courseModules.flatMap((m) => [
+    m.slug,
+    ...m.sections.flatMap((s) =>
+      s.subPages ? s.subPages.map((sp) => `${m.slug}/${sp.id}`) : []
+    ),
+  ]),
 ];

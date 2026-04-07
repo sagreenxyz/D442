@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Gastrointestinal Assessment – Health Assessment">
+  <h1>Gastrointestinal Assessment</h1>
+  <p><em>Head-to-Toe Assessment Component · Section 1: Health Assessment</em></p>
+  <p>
+    The GI assessment evaluates the abdomen and digestive function through inspection,
+    auscultation, percussion, and palpation — in that order (auscultation before palpation
+    to avoid altering bowel sounds).
+  </p>
+
+  <h2 id="bowel-sounds">Bowel Sounds — 4 Quadrants</h2>
+  <p>
+    Auscultate all four quadrants for a minimum of <strong>60 seconds each</strong>
+    before concluding sounds are absent. Use the diaphragm of the stethoscope lightly
+    placed on the abdomen.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Normal</th><th>Definition &amp; Cause</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Normal</strong></td><td>5–30 sounds/min</td><td>Gurgling; borborygmi (longer gurgles); signify peristalsis</td></tr>
+      <tr><td><strong>Hyperactive</strong></td><td>&gt;30 sounds/min</td><td>High-pitched, rushing, tinkling; early bowel obstruction, diarrhea, hunger, post-op return of peristalsis</td></tr>
+      <tr><td><strong>Hypoactive</strong></td><td>&lt;5 sounds/min</td><td>Infrequent, soft; post-operative ileus, opioid use, electrolyte imbalances</td></tr>
+      <tr><td><strong>Absent</strong></td><td>None in 3–5 min</td><td>Paralytic ileus, peritonitis, mesenteric ischemia — <strong>report promptly</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="tip">
+    <strong>💡 Quadrant Reference</strong>
+    RUQ: liver, gallbladder, part of colon. LUQ: stomach, spleen, pancreas. RLQ: appendix,
+    cecum, ascending colon. LLQ: sigmoid colon, descending colon.
+  </div>
+
+  <h2 id="tenderness">Abdominal Tenderness</h2>
+  <p>
+    <strong>Always perform auscultation and percussion before palpation</strong> — palpation
+    alters bowel sounds and may cause involuntary guarding that interferes with assessment.
+  </p>
+  <h3>Light Palpation</h3>
+  <ul>
+    <li>Depress 1–2 cm in all quadrants, starting away from reported pain.</li>
+    <li>Assess for: tenderness, rigidity (involuntary muscle tension), guarding.</li>
+  </ul>
+  <h3>Deep Palpation</h3>
+  <ul>
+    <li>Depress 4–6 cm to assess organ size and deep tenderness.</li>
+    <li><strong>Rebound tenderness (Blumberg's sign):</strong> Slowly depress abdomen then release quickly; pain on release suggests peritoneal irritation (appendicitis, peritonitis).</li>
+    <li><strong>Rovsing's sign:</strong> Pressure in LLQ causes pain in RLQ; suggests appendicitis.</li>
+    <li><strong>Murphy's sign:</strong> Pain/arrest of inspiration on right subcostal palpation; suggests cholecystitis.</li>
+  </ul>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Description</th><th>Significance</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Voluntary guarding</strong></td><td>Patient tightens abdominal muscles when hands approach</td><td>Apprehension or discomfort — may be reduced with distraction</td></tr>
+      <tr><td><strong>Involuntary guarding (rigidity)</strong></td><td>Board-like hardness that cannot be relaxed</td><td>Peritoneal irritation — urgent finding</td></tr>
+      <tr><td><strong>Rebound tenderness</strong></td><td>Worse on release than on compression</td><td>Peritonitis; appendicitis</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="lbm">Last Bowel Movement (LBM)</h2>
+  <p>
+    Always ask about the patient's last bowel movement as part of the admission and
+    ongoing assessment:
+  </p>
+  <ul>
+    <li><strong>Frequency:</strong> Normal range is 3/day to 3/week. Greater or lesser can be normal for the individual.</li>
+    <li><strong>Character:</strong> Use the <strong>Bristol Stool Scale</strong> (Types 1–7): Types 3–4 are ideal; Type 1–2 = constipation; Types 6–7 = diarrhea.</li>
+    <li><strong>Color:</strong> Brown (normal); black/tarry (melena — upper GI bleed); bright red (hematochezia — lower GI bleed); clay/pale (bile duct obstruction); green (rapid transit or bile).</li>
+    <li><strong>Interventions for no BM &gt;3 days:</strong> Assess for constipation; consider PRN stool softener, laxative, or enema per order.</li>
+  </ul>
+
+  <h2 id="nausea-vomiting">Nausea &amp; Vomiting</h2>
+  <ul>
+    <li>Assess onset, frequency, character (bilious, bloody, feculent), amount, and associated factors.</li>
+    <li><strong>Hematemesis</strong> (vomiting blood) = upper GI bleed — priority notification.</li>
+    <li>Monitor fluid and electrolyte balance (risk of hypokalemia, metabolic alkalosis with persistent vomiting).</li>
+  </ul>
+
+  <div class="warning">
+    <strong>⚠️ Priority GI Findings to Report</strong>
+    Absent bowel sounds, rigid abdomen (board-like), rebound tenderness, bloody stools
+    (hematemesis or hematochezia), or severe acute abdominal pain require immediate
+    physician notification.
+  </div>
+</Layout>

@@ -16,6 +16,15 @@ const rawPath = Astro.url.pathname;
 const strippedBase = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 const currentSlug = rawPath.replace(strippedBase, '').replace(/^\/|\/$/g, '');
 
+// Detect sub-pages (e.g. "module-1/general-survey")
+const subPageMatch = currentSlug.match(/^(module-\d+)\/(.+)$/);
+const parentModuleSlug = subPageMatch ? subPageMatch[1] : null;
+const subPageId        = subPageMatch ? subPageMatch[2] : null;
+const parentModule     = parentModuleSlug ? courseModules.find(m => m.slug === parentModuleSlug) : null;
+const subPageDef       = parentModule && subPageId
+  ? parentModule.sections.flatMap(s => s.subPages ?? []).find(sp => sp.id === subPageId)
+  : null;
+
 const currentIdx = pageOrder.indexOf(currentSlug);
 const prevSlug = currentIdx > 0 ? pageOrder[currentIdx - 1] : null;
 const nextSlug = currentIdx >= 0 && currentIdx < pageOrder.length - 1 ? pageOrder[currentIdx + 1] : null;
@@ -24,7 +33,18 @@ function slugToLabel(slug: string): string {
   if (slug === '') return 'Home';
   if (slug === 'course-overview') return 'Course Overview';
   const mod = courseModules.find(m => m.slug === slug);
-  return mod ? `§${mod.number} ${mod.title}` : slug;
+  if (mod) return `§${mod.number} ${mod.title}`;
+  // sub-page slug
+  const spMatch = slug.match(/^(module-\d+)\/(.+)$/);
+  if (spMatch) {
+    const pMod = courseModules.find(m => m.slug === spMatch[1]);
+    if (pMod) {
+      const sp = pMod.sections.flatMap(s => s.subPages ?? []).find(s => s.id === spMatch[2]);
+      if (sp) return sp.title;
+    }
+    return spMatch[2];
+  }
+  return slug;
 }
 
 // Build breadcrumb trail for the current page
@@ -32,6 +52,10 @@ interface Crumb { label: string; href: string | null; }
 const breadcrumbs: Crumb[] = [{ label: 'Home', href: base }];
 if (currentSlug === 'course-overview') {
   breadcrumbs.push({ label: 'Course Overview', href: null });
+} else if (parentModule && subPageDef) {
+  // sub-page: Home > §N Title > SubPage Title
+  breadcrumbs.push({ label: `§${parentModule.number} ${parentModule.title}`, href: `${base}${parentModule.slug}` });
+  breadcrumbs.push({ label: subPageDef.title, href: null });
 } else {
   const mod = courseModules.find(m => m.slug === currentSlug);
   if (mod) {
@@ -39,9 +63,12 @@ if (currentSlug === 'course-overview') {
   }
 }
 
-// Serialise course structure for client-side JS
+// Serialise course structure for client-side JS (include subPages)
 const clientData = JSON.stringify(
-  courseModules.map(m => ({ slug: m.slug, sections: m.sections.map(s => s.id) }))
+  courseModules.map(m => ({
+    slug: m.slug,
+    sections: m.sections.map(s => ({ id: s.id, subPages: (s.subPages ?? []).map(sp => sp.id) })),
+  }))
 );
 ---
 
@@ -267,6 +294,35 @@ const clientData = JSON.stringify(
       .sidebar-section-item.done { color: var(--color-success); }
       .sidebar-section-item.done a { color: var(--color-success); }
       .section-check { font-size: 0.8rem; flex-shrink: 0; }
+
+      /* Sub-page list nested inside a section item */
+      .sidebar-subpages {
+        list-style: none;
+        display: none;
+        margin-left: 1rem;
+        border-left: 2px solid var(--color-border);
+      }
+      .sidebar-subpages.open { display: block; }
+      .sidebar-subpage-item {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.25rem 0.6rem 0.25rem 0.5rem;
+        font-size: 0.78rem;
+        color: #555;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sidebar-subpage-item a {
+        color: inherit;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        flex: 1;
+      }
+      .sidebar-subpage-item a:hover { color: var(--color-primary); text-decoration: none; }
+      .sidebar-subpage-item.active a { color: var(--color-primary); font-weight: 600; }
 
       /* Reset progress button */
       .sidebar-reset {
@@ -526,11 +582,13 @@ const clientData = JSON.stringify(
 
           <p class="sidebar-heading">Sections</p>
 
-          {courseModules.map((mod) => (
+          {courseModules.map((mod) => {
+            const isActiveModule = currentSlug === mod.slug || parentModuleSlug === mod.slug;
+            return (
             <div class="sidebar-module" data-module-slug={mod.slug} data-section-count={mod.sections.length}>
               <button
-                class={`sidebar-module-toggle${currentSlug === mod.slug ? ' active' : ''}`}
-                aria-expanded={currentSlug === mod.slug ? 'true' : 'false'}
+                class={`sidebar-module-toggle${isActiveModule ? ' active' : ''}`}
+                aria-expanded={isActiveModule ? 'true' : 'false'}
                 data-module-slug={mod.slug}
               >
                 <svg class="module-toggle-arrow" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
@@ -539,16 +597,26 @@ const clientData = JSON.stringify(
                 <span class="module-toggle-label">§{mod.number} {mod.title}</span>
                 <span class="module-progress-badge" data-progress-badge={mod.slug}>0/{mod.sections.length}</span>
               </button>
-              <ul class={`sidebar-sections${currentSlug === mod.slug ? ' open' : ''}`} data-sections-list={mod.slug}>
+              <ul class={`sidebar-sections${isActiveModule ? ' open' : ''}`} data-sections-list={mod.slug}>
                 {mod.sections.map((sec) => (
                   <li class="sidebar-section-item" data-section-id={sec.id} data-module={mod.slug}>
                     <span class="section-check" data-check={`${mod.slug}::${sec.id}`}>○</span>
                     <a href={`${base}${mod.slug}#${sec.id}`}>{sec.title}</a>
+                    {sec.subPages && sec.subPages.length > 0 && (
+                      <ul class={`sidebar-subpages${parentModuleSlug === mod.slug ? ' open' : ''}`}>
+                        {sec.subPages.map((sp) => (
+                          <li class={`sidebar-subpage-item${subPageId === sp.id && parentModuleSlug === mod.slug ? ' active' : ''}`}>
+                            <a href={`${base}${mod.slug}/${sp.id}`}>{sp.title}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
+          );
+          })}
 
           <p class="sidebar-heading">Tools</p>
           <button class="sidebar-reset" id="resetProgress">↺ Reset all progress</button>
@@ -694,7 +762,8 @@ const clientData = JSON.stringify(
             badge.classList.toggle('complete', done.length === total);
           }
           // update section check marks
-          mod.sections.forEach(sectionId => {
+          mod.sections.forEach(sec => {
+            const sectionId = sec.id;
             const check = document.querySelector(`[data-check="${mod.slug}::${sectionId}"]`);
             const item = check ? check.closest('.sidebar-section-item') : null;
             if (check) {
@@ -719,7 +788,8 @@ const clientData = JSON.stringify(
         const completed = getCompleted();
         const doneSections = completed[currentSlug] || [];
 
-        mod.sections.forEach(sectionId => {
+        mod.sections.forEach(sec => {
+          const sectionId = sec.id;
           const h2 = document.getElementById(sectionId);
           if (!h2 || h2.closest('.section-header')) return; // skip if already wrapped
           const wrapper = document.createElement('div');

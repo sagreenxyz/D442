@@ -1,5 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : rawBase + '/';
+
+const htt_subpages = [
+  { id: 'general-survey',   title: 'General Survey',    desc: 'LOC, appearance, affect, hygiene, distress' },
+  { id: 'neurological',     title: 'Neurological',      desc: 'Orientation, GCS, PERRLA' },
+  { id: 'cardiovascular',   title: 'Cardiovascular',    desc: 'Heart rate/rhythm, pulses, capillary refill, edema' },
+  { id: 'respiratory',      title: 'Respiratory',       desc: 'Rate, depth, effort, breath sounds' },
+  { id: 'gastrointestinal', title: 'Gastrointestinal',  desc: 'Bowel sounds × 4 quadrants, tenderness, LBM' },
+  { id: 'genitourinary',    title: 'Genitourinary',     desc: 'Urine output, color, clarity, odor' },
+  { id: 'musculoskeletal',  title: 'Musculoskeletal',   desc: 'Strength grading (0–5), ROM, gait, balance' },
+  { id: 'integumentary',    title: 'Integumentary',     desc: 'Color, temp, moisture, turgor, pressure injury staging' },
+];
 ---
 
 <Layout title="Section 1 – Health Assessment">
@@ -26,16 +40,15 @@ import Layout from '../layouts/Layout.astro';
   </ul>
 
   <h3>Head-to-Toe Physical Assessment</h3>
-  <ul>
-    <li><strong>General Survey:</strong> Level of consciousness, appearance, affect, hygiene, distress.</li>
-    <li><strong>Neurological:</strong> Orientation (person, place, time, event); Glasgow Coma Scale (GCS); PERRLA.</li>
-    <li><strong>Cardiovascular:</strong> Heart rate/rhythm; peripheral pulses; capillary refill; edema grading.</li>
-    <li><strong>Respiratory:</strong> Rate, depth, effort; breath sounds (vesicular, crackles, wheezes, rhonchi, stridor).</li>
-    <li><strong>Gastrointestinal:</strong> Bowel sounds × 4 quadrants; tenderness; last bowel movement.</li>
-    <li><strong>Genitourinary:</strong> Urine output (min 0.5 mL/kg/hr); color, clarity, odor.</li>
-    <li><strong>Musculoskeletal:</strong> Muscle strength grading (0–5); ROM; gait, balance.</li>
-    <li><strong>Integumentary:</strong> Color, temperature, moisture, turgor; pressure injury staging.</li>
-  </ul>
+  <p>Select a component below for a detailed reference page:</p>
+  <div class="htt-grid">
+    {htt_subpages.map((sp) => (
+      <a href={`${base}module-1/${sp.id}`} class="htt-card">
+        <strong>{sp.title}</strong>
+        <span>{sp.desc}</span>
+      </a>
+    ))}
+  </div>
 
   <h3>Essential Lessons (Sherpath, Section 1 – Chapter 16)</h3>
   <ul>
@@ -44,7 +57,7 @@ import Layout from '../layouts/Layout.astro';
     <li>Recognize Cues from Assessment Data</li>
   </ul>
 
-  <h2>Page 2: Older Adult Assessment</h2>
+  <h2 id="older-adult">Page 2: Older Adult Assessment</h2>
   <p>
     <strong>Learning Objective:</strong> Obtain a focused assessment of an older adult.
   </p>
@@ -75,7 +88,7 @@ import Layout from '../layouts/Layout.astro';
     <li>Mood, Functional Ability, and Comprehensive Cues</li>
   </ul>
 
-  <h2>Page 3: Vital Signs &amp; Pain Assessment</h2>
+  <h2 id="vital-signs">Page 3: Vital Signs &amp; Pain Assessment</h2>
   <p>
     <strong>Learning Objective:</strong> Demonstrate vital signs and pain assessment on an
     adult patient.
@@ -128,7 +141,7 @@ import Layout from '../layouts/Layout.astro';
     <li>Shadow Health Digital Clinical Experience</li>
   </ul>
 
-  <h2>Key Terms</h2>
+  <h2 id="key-terms">Key Terms</h2>
   <ul>
     <li><strong>Subjective data:</strong> Patient-reported symptoms, feelings, history.</li>
     <li><strong>Objective data:</strong> Nurse-observed, measured, or detected findings.</li>
@@ -138,3 +151,39 @@ import Layout from '../layouts/Layout.astro';
     <li><strong>OLDCARTS:</strong> Mnemonic for comprehensive pain characterization.</li>
   </ul>
 </Layout>
+
+<style>
+  .htt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 0.75rem;
+    margin: 0.75rem 0 1.25rem;
+  }
+  .htt-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--color-secondary);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 0.875rem;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .htt-card:hover {
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+  .htt-card strong {
+    color: var(--color-primary);
+    font-size: 0.95rem;
+  }
+  .htt-card span {
+    color: #666;
+    font-size: 0.8rem;
+  }
+</style>

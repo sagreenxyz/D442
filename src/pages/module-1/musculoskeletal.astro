@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Musculoskeletal Assessment – Health Assessment">
+  <h1>Musculoskeletal Assessment</h1>
+  <p><em>Head-to-Toe Assessment Component · Section 1: Health Assessment</em></p>
+  <p>
+    The musculoskeletal assessment evaluates muscle strength, joint range of motion,
+    gait, and balance to identify mobility deficits and safety risks.
+  </p>
+
+  <h2 id="muscle-strength">Muscle Strength Grading (0–5)</h2>
+  <p>
+    Test major muscle groups bilaterally. Ask the patient to move against resistance
+    and grade each extremity individually. Compare left to right.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Grade</th><th>Description</th><th>Clinical Meaning</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>0/5</strong></td><td>No muscle contraction detectable</td><td>Complete paralysis</td></tr>
+      <tr><td><strong>1/5</strong></td><td>Trace contraction visible or palpable; no movement</td><td>Severe paresis</td></tr>
+      <tr><td><strong>2/5</strong></td><td>Active movement with gravity eliminated</td><td>Significant weakness</td></tr>
+      <tr><td><strong>3/5</strong></td><td>Active movement against gravity, but not against resistance</td><td>Moderate weakness</td></tr>
+      <tr><td><strong>4/5</strong></td><td>Active movement against some resistance</td><td>Mild weakness</td></tr>
+      <tr><td><strong>5/5</strong></td><td>Normal strength; full movement against full resistance</td><td>Normal</td></tr>
+    </tbody>
+  </table>
+  <div class="tip">
+    <strong>💡 Testing Tips</strong>
+    Test bilaterally and simultaneously when possible (e.g., grip strength). Always compare
+    dominant vs. non-dominant side — the dominant side is normally slightly stronger.
+    Document as fractions: "strength 5/5 bilaterally upper extremities."
+  </div>
+
+  <h2 id="rom">Range of Motion (ROM)</h2>
+  <p>
+    Assess active ROM (patient moves independently) and passive ROM (nurse moves the
+    joint). Note pain, crepitus, or limited movement.
+  </p>
+  <table>
+    <thead>
+      <tr><th>Joint / Movement</th><th>Normal ROM</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Shoulder flexion/extension</td><td>0–180° / 0–60°</td></tr>
+      <tr><td>Shoulder abduction</td><td>0–180°</td></tr>
+      <tr><td>Elbow flexion/extension</td><td>0–150° / 0°</td></tr>
+      <tr><td>Wrist flexion/extension</td><td>0–80° / 0–70°</td></tr>
+      <tr><td>Hip flexion</td><td>0–120° (knee bent)</td></tr>
+      <tr><td>Hip abduction</td><td>0–45°</td></tr>
+      <tr><td>Knee flexion/extension</td><td>0–135° / 0°</td></tr>
+      <tr><td>Ankle dorsiflexion/plantarflexion</td><td>0–20° / 0–50°</td></tr>
+      <tr><td>Neck flexion/extension</td><td>0–45° / 0–55°</td></tr>
+      <tr><td>Lumbar flexion/extension</td><td>0–90° / 0–30°</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li><strong>Full ROM:</strong> Patient can perform all movements within normal limits.</li>
+    <li><strong>Limited ROM:</strong> Describe the limitation (e.g., "limited knee flexion to 90° secondary to pain").</li>
+    <li><strong>Crepitus:</strong> Grating or cracking sensation in joint; may indicate osteoarthritis or fracture.</li>
+    <li><strong>Joint deformity:</strong> Note swelling, redness, warmth (inflammatory vs. non-inflammatory).</li>
+  </ul>
+
+  <h2 id="gait">Gait Assessment</h2>
+  <p>
+    Observe the patient walking (if safe to do so). Assess for:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Gait Finding</th><th>Description</th><th>Associated Condition</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Normal gait</strong></td><td>Smooth, coordinated, symmetric stride; arms swing freely</td><td>Healthy</td></tr>
+      <tr><td><strong>Antalgic gait</strong></td><td>Limping; reduced stance on painful side</td><td>Pain, fracture, arthritis</td></tr>
+      <tr><td><strong>Shuffling gait</strong></td><td>Short steps, feet barely lifted; stooped posture</td><td>Parkinson's disease</td></tr>
+      <tr><td><strong>Scissors gait</strong></td><td>Legs cross midline; stiff, slow movement</td><td>Spastic cerebral palsy, MS</td></tr>
+      <tr><td><strong>Steppage gait</strong></td><td>High knee lift to clear foot (foot drop)</td><td>Peroneal nerve palsy, foot drop</td></tr>
+      <tr><td><strong>Ataxic gait</strong></td><td>Wide-based, unsteady, staggering</td><td>Cerebellar dysfunction, intoxication</td></tr>
+      <tr><td><strong>Trendelenburg gait</strong></td><td>Trunk lurches to weak side with each step</td><td>Hip abductor weakness, hip pathology</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="balance">Balance &amp; Fall Risk</h2>
+  <ul>
+    <li><strong>Romberg test:</strong> Stand with feet together, arms at side; observe first with eyes open, then closed (30 sec). Positive = increased sway with eyes closed → proprioceptive or cerebellar deficit.</li>
+    <li><strong>Timed Up and Go (TUG):</strong> Time patient from sitting to standing, walking 3 m, turning, returning, and sitting. &gt;12 seconds = increased fall risk.</li>
+    <li><strong>One-legged stance:</strong> Unable to stand &gt;5 seconds on one leg = fall risk.</li>
+    <li><strong>Tandem gait:</strong> Walk heel-to-toe in a straight line; inability indicates cerebellar or vestibular dysfunction.</li>
+  </ul>
+
+  <div class="warning">
+    <strong>⚠️ Safety First</strong>
+    Always have a gait belt, stay at the patient's side, and ensure the environment is clear
+    before ambulation assessment. Patients with documented fall risk require two-person or
+    assistive device protocols.
+  </div>
+</Layout>
